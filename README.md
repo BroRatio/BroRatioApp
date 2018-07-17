@@ -1,16 +1,30 @@
-# BRatioApp
+# BRatioApp Outline
 
-# MVP Objective: Give and store the ratio of men and women in a room on a picture, after authenticating through a login that uses face recognition.
-## Ratio
-## Mood of the picture
-## Ages
+## Project Board
+#### https://github.com/BroRatio/BroRatioApp/projects/1
 
-![Alt text](https://files.slack.com/files-pri/T9GN86MM3-FBSBPE82Z/image2.jpeg?raw=true "Main Page")
+# MVP Objective: 
+## Give and store the ratio of men and women in a room on a picture, after authenticating through a login that uses face recognition.
+ #### ** Ratio
+ #### ** Mood of the picture
+ #### ** Ages
 
-![Alt text](https://files.slack.com/files-pri/T9GN86MM3-FBS3Q9KMZ/image4.jpeg?raw=true "Login Page")
+#### "Main Page"
+![Screenshot](backend.jpg)
+
+#### "Login Page"
+![Screenshot](backend2.jpeg)
+
+#### "Save"
+![Screenshot](save.jpg)
 
 
-# Full Concept: Dating app based on pictures and associated based on what people chose to share at different locations, hoping to mock this after
+# Full Concept: 
+#### Dating app based on pictures and associated based on what people chose to share at different locations, hoping to mock this after
 
 # Technologies
-Node, React, Mongo, Materialize, Express
+#### Node, React, Mongo, Materialize, Express
+
+# Hosting DB and Server
+#### Digital Ocean
+
