@@ -9,7 +9,7 @@
 ![Screenshot](backend.jpg)
 
 "Login Page"
-![Screenshot](backend2.jpg)
+![Screenshot](backend2.jpeg)
 
 
 # Full Concept: Dating app based on pictures and associated based on what people chose to share at different locations, hoping to mock this after
