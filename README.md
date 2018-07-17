@@ -5,10 +5,11 @@
 ## Mood of the picture
 ## Ages
 
-![Alt text](https://files.slack.com/files-pri/T9GN86MM3-FBSBPE82Z/image2.jpeg "Main Page")
+"Main Page"
+![alt text](https://files.slack.com/files-pri/T9GN86MM3-FBSBPE82Z/image2.jpeg )
 
-![Alt text](https://files.slack.com/files-pri/T9GN86MM3-FBS3Q9KMZ/image4.jpeg"Login Page")
-
+"Login Page"
+![alt text](https://files.slack.com/files-pri/T9GN86MM3-FBS3Q9KMZ/image4.jpeg )
 
 # Full Concept: Dating app based on pictures and associated based on what people chose to share at different locations, hoping to mock this after
 
