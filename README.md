@@ -1,5 +1,8 @@
 # BRatioApp Outline
 
+## Project Board
+#### https://github.com/BroRatio/BroRatioApp/projects/1
+
 # MVP Objective: 
 ## Give and store the ratio of men and women in a room on a picture, after authenticating through a login that uses face recognition.
  #### ** Ratio
@@ -21,3 +24,7 @@
 
 # Technologies
 #### Node, React, Mongo, Materialize, Express
+
+# Hosting DB and Server
+#### Digital Ocean
+
