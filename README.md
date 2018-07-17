@@ -1,6 +1,7 @@
 # BRatioApp Outline
 
-# MVP Objective: Give and store the ratio of men and women in a room on a picture, after authenticating through a login that uses face recognition.
+# MVP Objective: 
+## Give and store the ratio of men and women in a room on a picture, after authenticating through a login that uses face recognition.
  #### ** Ratio
  #### ** Mood of the picture
  #### ** Ages
