@@ -6,10 +6,11 @@
 ## Ages
 
 "Main Page"
-![alt text](https://files.slack.com/files-pri/T9GN86MM3-FBSBPE82Z/image2.jpeg )
+![Screenshot](backend.jpg)
 
 "Login Page"
-![alt text](https://files.slack.com/files-pri/T9GN86MM3-FBS3Q9KMZ/image4.jpeg )
+![Screenshot](backend2.jpg)
+
 
 # Full Concept: Dating app based on pictures and associated based on what people chose to share at different locations, hoping to mock this after
 
