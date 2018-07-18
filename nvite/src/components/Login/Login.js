@@ -4,9 +4,11 @@ import React, { Component, Fragment } from 'react'
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+
 
 const style = {
-    height: 400,
+    height: "auto",
     width: 400,
     margin: 50,
     padding: 60,
@@ -30,19 +32,30 @@ export default class Login extends Component {
                     {/* <img target="_blank" src="#" alt="No Results" /> */}
                     <CircularProgress />
                     <br />
-                <Button style={{marginTop: '5em'}} variant='contained' color='primary' 
-                containerElement='label'>
-                    Take Picture
+                    <Button style={{ marginTop: '5em' }} variant='contained' size='large' color='primary'
+                        containerElement='label'>
+                        Take Picture
                 </Button>
-            
+
+
                 </Paper>
-                <Button style={{marginTop: '5em'}} variant='contained' color='primary' 
-                containerElement='label'
-                label='My Label'>
-   <input type="file" />
+                <br />
+                <Button style={{ marginTop: '5em' }} variant='contained' size="large" color='primary'
+                    containerElement='label'
+                    label='My Label'>
+                    <input type="file" />
+                </Button>
+
+                <Button style={{ marginTop: '5em' }} variant="contained" size="large" color="default">
+                    Upload Image
+        <CloudUploadIcon style={{ marginLeft: "5px" }} />
                 </Button>
             </Fragment>
 
         )
     }
+
 }
+
+
+
