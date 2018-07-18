@@ -1,13 +1,6 @@
 import React from 'react';
 import Webcam from 'react-webcam';
 
-//Simple Example 
-// class WebCamComponent extends React.Component {
-//   render() {
-//     return <Webcam/>;
-//   }
-// }
-
 //Extended 
 class WebcamCapture extends React.Component {
   setRef = (webcam) => {
