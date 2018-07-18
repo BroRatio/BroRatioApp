@@ -9,6 +9,17 @@ class WebcamCapture extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
+    console.log(imageSrc);
+  //   axios.post('/user', {
+  //   firstName: 'Fred',
+  //   lastName: 'Flintstone'
+  // })
+  // .then(function (response) {
+  //   console.log(response);
+  // })
+  // .catch(function (error) {
+  //   console.log(error);
+  // });
   };
 
   render() {
@@ -26,6 +37,7 @@ class WebcamCapture extends React.Component {
           ref={this.setRef}
           screenshotFormat="image/jpeg"
           width={350}
+          style={{borderRadius: '999px'}}
           videoConstraints={videoConstraints}
         />
         <button onClick={this.capture}>Capture photo</button>
