@@ -20,13 +20,14 @@ export default class Login extends Component {
         return (
 
             <Fragment>
-                <AppBar position="static" title='Title Here'>
+                {/* <AppBar position="static" title='Title Here'>
                     <Typography titleStyle={{ textAlign: "center" }} variant="display3" color="inherit">
                         Title Here
                     </Typography>
-                </AppBar>
+                </AppBar> */}
                 <Paper style={style}>
                     <h1>Image Here</h1>
+                    {/* <img target="_blank" src="#" alt="No Results" /> */}
                     <CircularProgress />
                     <br />
                 <Button style={{marginTop: '5em'}}variant='contained' color='primary'>
