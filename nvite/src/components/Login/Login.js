@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react'
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
+import CameraControl from '../Camera/CameraControl'
 
 const style = {
     height: 400,
@@ -25,6 +26,9 @@ export default class Login extends Component {
                         Title Here
                     </Typography>
                 </AppBar> */}
+                <CameraControl>
+                For the Camera
+                </CameraControl>
                 <Paper style={style}>
                     <h1>Image Here</h1>
                     {/* <img target="_blank" src="#" alt="No Results" /> */}
