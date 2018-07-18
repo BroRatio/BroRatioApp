@@ -30,11 +30,17 @@ export default class Login extends Component {
                     {/* <img target="_blank" src="#" alt="No Results" /> */}
                     <CircularProgress />
                     <br />
-                <Button style={{marginTop: '5em'}}variant='contained' color='primary'>
+                <Button style={{marginTop: '5em'}} variant='contained' color='primary' 
+                containerElement='label'>
                     Take Picture
                 </Button>
+            
                 </Paper>
-                
+                <Button style={{marginTop: '5em'}} variant='contained' color='primary' 
+                containerElement='label'
+                label='My Label'>
+   <input type="file" />
+                </Button>
             </Fragment>
 
         )
