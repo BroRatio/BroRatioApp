@@ -15,6 +15,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+import Login from '../Login/Login'
 
 const drawerWidth = 240;
 
@@ -23,7 +24,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   appFrame: {
-    height: 430,
+    height: "100%",
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -70,7 +71,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: "transparant",
     padding: theme.spacing.unit * 3,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -80,9 +81,7 @@ const styles = theme => ({
   'content-left': {
     marginLeft: -drawerWidth,
   },
-  'content-right': {
-    marginRight: -drawerWidth,
-  },
+
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
@@ -179,7 +178,7 @@ class PersistentDrawer extends React.Component {
             })}
           >
             <div className={classes.drawerHeader} />
-       
+       {/* Content goes in here */} <Login />
           </main>
           {after}
         </div>

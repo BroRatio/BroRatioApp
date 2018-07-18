@@ -8,7 +8,8 @@ const Score = props => (
             <span>|</span>
             <span>Female: {props.female}</span>
         </p>
-        <p style={props.text} className='message'>{props.message}</p>
+        <p className='mood'>{props.mood}</p>
+        <p className='message'>{props.message}</p>
     </div>
 );
 
