@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -22,12 +21,11 @@ export default class Login extends Component {
 
             <Fragment>
                 <AppBar position="static"  title='Title Here'>
-                    <Toolbar titleStyle={{textAlign: "center"}}>
-                        <Typography  variant="title" color="inherit">
+                    
+                        <Typography titleStyle={{textAlign: "center"}} variant="display3" color="inherit">
                             Title Here
                         </Typography>
-                        
-                    </Toolbar>
+               
                 </AppBar>
                 <Paper style={style}>
                     <h1>Image Here</h1>

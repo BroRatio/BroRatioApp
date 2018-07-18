@@ -3,7 +3,7 @@ import "./Score.css";
 
 const Score = props => (
     <div className="container">
-        <p>
+        <p className='score'>
             <span>Male: {props.male}</span>
             <span>|</span>
             <span>Female: {props.female}</span>
