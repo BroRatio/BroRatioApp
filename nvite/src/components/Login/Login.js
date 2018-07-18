@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
+// import AppBar from '@material-ui/core/AppBar';
+// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
@@ -21,7 +21,7 @@ export default class Login extends Component {
 
             <Fragment>
                 {/* <AppBar position="static" title='Title Here'>
-                    <Typography titleStyle={{ textAlign: "center" }} variant="display3" color="inherit">
+                    <Typography titleStyle={{ textAlign: "center", margin: "auto" }} variant="display3" color="inherit">
                         Title Here
                     </Typography>
                 </AppBar> */}
