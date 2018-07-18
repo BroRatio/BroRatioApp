@@ -1,7 +1,6 @@
 .score, .message{
   color: white;
   display: block;
-  text-align:center;
   font-size: 26px;
   text-shadow: -1px -1px 1px #aaa,
              0px 2px 3px grey,

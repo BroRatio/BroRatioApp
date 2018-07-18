@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import Button from '@material-ui/core/Button';
 
 const styles = {
-    display: "inline-block",
     width: 'auto',
 }
 
@@ -49,7 +49,7 @@ export default class Login extends Component {
                     value={this.state.password}
                     onChange={this.handleInputChange}
                     type="password" />
-                <button onClick={this.handleFormSubmit}>Submit</button>
+                <Button variant="outlined" color="primary" onClick={this.handleFormSubmit}>Submit</Button>
             </form>
             </div>
         )
