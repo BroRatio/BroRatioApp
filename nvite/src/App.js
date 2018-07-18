@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Score from './components/Score/Score'
 import './App.css'
 import PersistentDrawer from './components/PersistentDrawer/PersistentDrawer';
+import LoginForm from './components/LoginForm/LoginForm'
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
       <div className="App">
         <PersistentDrawer />
         <Score />
+        <LoginForm />
       </div>
     );
   }
