@@ -23,7 +23,8 @@
 #### Dating app based on pictures and associated based on what people chose to share at different locations, hoping to mock this after
 
 # Technologies
-#### Node, React, Mongo, Materialize, Express
+#### Node, React, Mongo, Express
+* [Material-UI](https://material-ui.com/) is an open-source project that features React components that implement Google's Material Design.
 
 # Hosting DB and Server
 #### Digital Ocean

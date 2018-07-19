@@ -1,46 +1,58 @@
 import React, { Component, Fragment } from 'react'
-// import AppBar from '@material-ui/core/AppBar';
-// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Button from '@material-ui/core/Button';
+// import CircularProgress from '@material-ui/core/CircularProgress';
+// import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CameraControl from '../Camera/CameraControl'
+import Score from '../Score/Score'
 
 const style = {
-    height: 400,
-    width: 400,
-    margin: 50,
-    padding: 60,
+    height: 430,
+    width: 620,
     textAlign: 'center',
-    display: 'inline-block',
-    borderRadius: '999px',
+    borderRadius: '100px',
+    margin: "auto",
+    // marginTop: "5em"
 };
 
 export default class Login extends Component {
+    // Initial setup for person count will be moved to other pages later
+    state = {
+        male: 0,
+        female: 0,
+        mood: 'Jubilation',
+    };
     render() {
         return (
-
             <Fragment>
-                {/* <AppBar position="static" title='Title Here'>
-                    <Typography titleStyle={{ textAlign: "center", margin: "auto" }} variant="display3" color="inherit">
-                        Title Here
-                    </Typography>
-                </AppBar> */}
-                <CameraControl>
-                For the Camera
-                </CameraControl>
                 <Paper style={style}>
-                    <h1>Image Here</h1>
-                    {/* <img target="_blank" src="#" alt="No Results" /> */}
-                    <CircularProgress />
-                    <br />
-                <Button style={{marginTop: '5em'}}variant='contained' color='primary'>
-                    Take Picture
-                </Button>
+                    {/* <div style={{border: "1px solid white", textAlign: 'center', margin: "auto"}}> */}
+                    <CameraControl>
+                        For the Camera
+                </CameraControl>
+                    {/* </div> */}
+                    <Score
+                        male={this.state.male}
+                        female={this.state.female}
+                        mood={this.state.mood}
+                    />
                 </Paper>
-                
+                <br />
             </Fragment>
-
         )
     }
 }
+
+// ===================== ===================== ===================== ===================== //
+//  Button for when user uploads an img from their PC, This code might need axios post too.//
+// ===================== ===================== ===================== ===================== //
+//           
+//         <Button style={{ marginTop: '5em' }} variant='contained' size="large" color='primary'
+//             containerElement='label'
+//             label='My Label'>
+//             <input type="file" />
+//         </Button>
+//         <Button style={{ marginTop: '5em' }} variant="contained" size="large" color="default">
+//             Upload Image
+// <CloudUploadIcon style={{ marginLeft: "5px" }} />
+//         </Button>
+//

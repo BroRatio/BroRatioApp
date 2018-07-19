@@ -1,5 +1,7 @@
 import React from 'react';
 import Webcam from 'react-webcam';
+// Material-UI imports
+import Button from '@material-ui/core/Button';
 
 //Extended 
 class WebcamCapture extends React.Component {
@@ -9,6 +11,17 @@ class WebcamCapture extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
+    console.log(imageSrc);
+  //   axios.post('/user', {
+  //   firstName: 'Fred',
+  //   lastName: 'Flintstone'
+  // })
+  // .then(function (response) {
+  //   console.log(response);
+  // })
+  // .catch(function (error) {
+  //   console.log(error);
+  // });
   };
 
   render() {
@@ -22,13 +35,16 @@ class WebcamCapture extends React.Component {
       <div>
         <Webcam
           audio={false}
-          height={350}
+          height={470}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={350}
+          width={600}
+          style={{borderRadius: '800px'}}
           videoConstraints={videoConstraints}
+          gutterBottom
         />
-        <button onClick={this.capture}>Capture photo</button>
+        <br />
+        <Button variant='contained' size='small' color='primary' onClick={this.capture}>Capture photo</Button>
       </div>
     );
   }
