@@ -162,7 +162,7 @@ class PersistentDrawer extends React.Component {
             })}
           >
             <Toolbar disableGutters={!open}>
-              <Tooltip title="Your Messages">
+              <Tooltip title="Your Messages" placement="right">
 
                 <IconButton
                   color="inherit"
