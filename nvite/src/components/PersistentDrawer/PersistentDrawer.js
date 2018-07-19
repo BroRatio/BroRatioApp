@@ -167,10 +167,11 @@ class PersistentDrawer extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <SimpleModal />
-              <Typography  style={{ marginLeft: "130px" }} variant="display1" color="inherit">
+              
+              <Typography  style={{ margin: "auto" }} variant="display1" color="inherit">
                 <Icon>camera_front</Icon>Nvite
               </Typography>
+              <SimpleModal />
             </Toolbar>
           </AppBar>
           {before}
