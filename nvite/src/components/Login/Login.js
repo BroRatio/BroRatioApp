@@ -16,11 +16,11 @@ const style = {
 
 export default class Login extends Component {
     state = {
-    male: 0,
-    female: 0,
-    mood: '',
-    message: 'Take a picture!'
-  };
+        male: 0,
+        female: 0,
+        mood: '',
+        message: 'Take a picture!'
+    };
     render() {
         return (
 
