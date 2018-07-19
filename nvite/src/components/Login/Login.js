@@ -3,18 +3,16 @@ import React, { Component, Fragment } from 'react'
 // import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Button from '@material-ui/core/Button';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+// import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CameraControl from '../Camera/CameraControl'
+import Score from '../Score/Score'
 
 const style = {
-    height: "auto",
-    width: 400,
-    margin: 50,
-    padding: 60,
+    height: 430,
+    width: 540,
     textAlign: 'center',
-    display: 'inline-block',
-    borderRadius: '999px',
+
+    borderRadius: '100px',
 };
 
 export default class Login extends Component {
@@ -27,32 +25,20 @@ export default class Login extends Component {
                         Title Here
                     </Typography>
                 </AppBar> */}
-                <CameraControl>
-                For the Camera
-                </CameraControl>
+
                 <Paper style={style}>
-                    <h1>Image Here</h1>
-                    {/* <img target="_blank" src="#" alt="No Results" /> */}
-                    <CircularProgress />
-                    <br />
-                    <Button style={{ marginTop: '5em' }} variant='contained' size='large' color='primary'
+                    <CameraControl>
+                        For the Camera
+                </CameraControl>
+                    {/* <CircularProgress /> */}
+                    {/* <Button style={{ marginTop: '5em' }} variant='contained' size='large' color='primary'
                         containerElement='label'>
                         Take Picture
-                </Button>
+                </Button> */}
 
-
+<Score />
                 </Paper>
-                <br />
-                <Button style={{ marginTop: '5em' }} variant='contained' size="large" color='primary'
-                    containerElement='label'
-                    label='My Label'>
-                    <input type="file" />
-                </Button>
 
-                <Button style={{ marginTop: '5em' }} variant="contained" size="large" color="default">
-                    Upload Image
-        <CloudUploadIcon style={{ marginLeft: "5px" }} />
-                </Button>
             </Fragment>
 
         )
@@ -61,4 +47,16 @@ export default class Login extends Component {
 }
 
 
-
+// ===================== ===================== ===================== ===================== //
+//  Code for when user uploads an img from their PC, This code will need axios post too.   //
+// ===================== ===================== ===================== ===================== //
+//                 <br />
+//         <Button style={{ marginTop: '5em' }} variant='contained' size="large" color='primary'
+//             containerElement='label'
+//             label='My Label'>
+//             <input type="file" />
+//         </Button>
+//         <Button style={{ marginTop: '5em' }} variant="contained" size="large" color="default">
+//             Upload Image
+// <CloudUploadIcon style={{ marginLeft: "5px" }} />
+//         </Button>

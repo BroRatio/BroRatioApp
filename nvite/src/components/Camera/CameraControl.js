@@ -1,5 +1,7 @@
 import React from 'react';
 import Webcam from 'react-webcam';
+// Material-UI imports
+import Button from '@material-ui/core/Button';
 
 //Extended 
 class WebcamCapture extends React.Component {
@@ -33,14 +35,14 @@ class WebcamCapture extends React.Component {
       <div>
         <Webcam
           audio={false}
-          height={350}
+          height={400}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={350}
+          width={400}
           style={{borderRadius: '999px'}}
           videoConstraints={videoConstraints}
         />
-        <button onClick={this.capture}>Capture photo</button>
+        <Button variant='contained' size='small' color='primary' onClick={this.capture}>Capture photo</Button>
       </div>
     );
   }

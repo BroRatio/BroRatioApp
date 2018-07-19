@@ -6,12 +6,11 @@ import PersistentDrawer from './components/PersistentDrawer/PersistentDrawer';
 import LoginForm from './components/LoginForm/LoginForm'
 
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
+      <div className="App loader">
         <PersistentDrawer />
-        <Score />
-        <LoginForm />
       </div>
     );
   }

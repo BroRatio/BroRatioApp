@@ -6,6 +6,7 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
+import Icon from '@material-ui/core/Icon'
 // import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 // import TextField from '@material-ui/core/TextField';
@@ -165,8 +166,9 @@ class PersistentDrawer extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography style={{ textAlign: "center", margin: "auto" }} variant="title" color="inherit" noWrap>
-                Navbar with Drawer
+              
+              <Typography  style={{ margin: "auto" }} variant="display1" color="inherit">
+                <Icon>camera_front</Icon>Nvite
               </Typography>
             </Toolbar>
           </AppBar>
