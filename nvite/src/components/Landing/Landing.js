@@ -18,8 +18,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 import Login from '../Login/Login'
 import SimpleModal from '../SimpleModal/SimpleModal'
+import Tooltip from '@material-ui/core/Tooltip';
 
-const drawerWidth = 240;
+
+const drawerWidth = 220;
 
 const styles = theme => ({
   root: {
@@ -112,8 +114,6 @@ class PersistentDrawer extends React.Component {
     this.setState({ open: false });
   };
 
-
-
   render() {
     const { classes, theme } = this.props;
     const { anchor, open } = this.state;
@@ -128,6 +128,9 @@ class PersistentDrawer extends React.Component {
         }}
       >
         <div className={classes.drawerHeader}>
+          <Typography style={{ margin: "auto" }} variant="headline">
+            Messages
+      </Typography>
           <IconButton onClick={this.handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
@@ -159,16 +162,18 @@ class PersistentDrawer extends React.Component {
             })}
           >
             <Toolbar disableGutters={!open}>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(classes.menuButton, open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
-              
-              <Typography  style={{ margin: "auto" }} variant="display1" color="inherit">
+              <Tooltip title="Your Messages">
+
+                <IconButton
+                  color="inherit"
+                  aria-label="Open drawer"
+                  onClick={this.handleDrawerOpen}
+                  className={classNames(classes.menuButton, open && classes.hide)}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Tooltip>
+              <Typography style={{ margin: "auto" }} variant="display1" color="inherit">
                 <Icon>camera_front</Icon>Nvite
               </Typography>
               <SimpleModal />
@@ -182,7 +187,7 @@ class PersistentDrawer extends React.Component {
             })}
           >
             {/* <div className={classes.drawerHeader} /> */}
-       {/* Content goes in here => */} <Login />
+            {/* Content goes in here => */} <Login />
           </main>
           {after}
         </div>
