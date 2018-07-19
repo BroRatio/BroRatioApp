@@ -8,7 +8,6 @@ import Score from '../Score/Score'
 const style = {
     height: 430,
     width: 620,
-    float: "center",
     textAlign: 'center',
     borderRadius: '100px',
     margin: "auto",
@@ -20,8 +19,7 @@ export default class Login extends Component {
     state = {
         male: 0,
         female: 0,
-        mood: '',
-        message: 'Take a picture!'
+        mood: 'Jubilation',
     };
     render() {
         return (
@@ -33,13 +31,12 @@ export default class Login extends Component {
                 </CameraControl>
                     {/* </div> */}
                     <Score
-                    male={this.state.male}
-                    female={this.state.female}
-                    mood={this.state.mood}
-                    message={this.state.message}
-                />
+                        male={this.state.male}
+                        female={this.state.female}
+                        mood={this.state.mood}
+                    />
                 </Paper>
-                
+                <br />
             </Fragment>
         )
     }

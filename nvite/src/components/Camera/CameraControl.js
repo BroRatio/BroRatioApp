@@ -29,7 +29,6 @@ class WebcamCapture extends React.Component {
       width: 1280,
       height: 720,
       facingMode: 'user',
-      top: 0,
     };
 
     return (
@@ -40,7 +39,7 @@ class WebcamCapture extends React.Component {
           ref={this.setRef}
           screenshotFormat="image/jpeg"
           width={600}
-          style={{borderRadius: '999px'}}
+          style={{borderRadius: '800px'}}
           videoConstraints={videoConstraints}
           gutterBottom
         />
