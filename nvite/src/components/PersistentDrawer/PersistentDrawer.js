@@ -17,6 +17,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 import Login from '../Login/Login'
+import SimpleModal from '../SimpleModal/SimpleModal'
 
 const drawerWidth = 240;
 
@@ -166,7 +167,7 @@ class PersistentDrawer extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              
+              <SimpleModal />
               <Typography  style={{ marginLeft: "200px" }} variant="display1" color="inherit">
                 <Icon>camera_front</Icon>Nvite
               </Typography>

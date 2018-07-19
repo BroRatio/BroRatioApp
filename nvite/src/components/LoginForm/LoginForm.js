@@ -36,7 +36,6 @@ export default class Login extends Component {
         return (
             <div style={styles}>
             <form>
-                <span>Login: </span>
                 <input
                     placeholder='Username'
                     name='user'

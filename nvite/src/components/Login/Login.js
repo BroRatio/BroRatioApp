@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 // import AppBar from '@material-ui/core/AppBar';
 // import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import CircularProgress from '@material-ui/core/CircularProgress';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 // import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CameraControl from '../Camera/CameraControl'
 import Score from '../Score/Score'
