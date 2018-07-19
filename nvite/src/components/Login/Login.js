@@ -11,11 +11,16 @@ const style = {
     height: 430,
     width: 540,
     textAlign: 'center',
-
     borderRadius: '100px',
 };
 
 export default class Login extends Component {
+    state = {
+    male: 0,
+    female: 0,
+    mood: '',
+    message: 'Take a picture!'
+  };
     render() {
         return (
 
@@ -36,7 +41,12 @@ export default class Login extends Component {
                         Take Picture
                 </Button> */}
 
-<Score />
+                    <Score
+                        male={this.state.male}
+                        female={this.state.female}
+                        mood={this.state.mood}
+                        message={this.state.message}
+                    />
                 </Paper>
 
             </Fragment>

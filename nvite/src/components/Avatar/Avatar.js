@@ -8,4 +8,4 @@ const styles = {
     width: '55px',
 }
 
-export default prop => <img style={styles} src="https://lh3.googleusercontent.com/-t4mT2nC4NkI/AAAAAAAAAAI/AAAAAAAAAAA/4DSxgN3cZmY/s100-c/116933859726289749306.jpg" alt='Nothing found' />
+export default props => <img style={styles} src={props.children} alt='Nothing found' />

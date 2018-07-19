@@ -181,7 +181,7 @@ class PersistentDrawer extends React.Component {
               [classes[`contentShift-${anchor}`]]: open,
             })}
           >
-            <div className={classes.drawerHeader} />
+            {/* <div className={classes.drawerHeader} /> */}
        {/* Content goes in here */} <Login />
           </main>
           {after}
