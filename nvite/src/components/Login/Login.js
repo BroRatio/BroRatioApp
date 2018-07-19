@@ -10,6 +10,7 @@ const style = {
     width: 540,
     textAlign: 'center',
     borderRadius: '100px',
+    margin: "auto"
 };
 
 export default class Login extends Component {
