@@ -7,10 +7,12 @@ import Score from '../Score/Score'
 
 const style = {
     height: 430,
-    width: 540,
+    width: 620,
+    float: "center",
     textAlign: 'center',
     borderRadius: '100px',
-    margin: "auto"
+    margin: "auto",
+    // marginTop: "5em"
 };
 
 export default class Login extends Component {
@@ -25,16 +27,19 @@ export default class Login extends Component {
         return (
             <Fragment>
                 <Paper style={style}>
+                    {/* <div style={{border: "1px solid white", textAlign: 'center', margin: "auto"}}> */}
                     <CameraControl>
                         For the Camera
                 </CameraControl>
+                    {/* </div> */}
                     <Score
-                        male={this.state.male}
-                        female={this.state.female}
-                        mood={this.state.mood}
-                        message={this.state.message}
-                    />
+                    male={this.state.male}
+                    female={this.state.female}
+                    mood={this.state.mood}
+                    message={this.state.message}
+                />
                 </Paper>
+                
             </Fragment>
         )
     }

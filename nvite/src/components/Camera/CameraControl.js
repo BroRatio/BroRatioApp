@@ -29,19 +29,22 @@ class WebcamCapture extends React.Component {
       width: 1280,
       height: 720,
       facingMode: 'user',
+      top: 0,
     };
 
     return (
       <div>
         <Webcam
           audio={false}
-          height={400}
+          height={470}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={400}
+          width={600}
           style={{borderRadius: '999px'}}
           videoConstraints={videoConstraints}
+          gutterBottom
         />
+        <br />
         <Button variant='contained' size='small' color='primary' onClick={this.capture}>Capture photo</Button>
       </div>
     );
