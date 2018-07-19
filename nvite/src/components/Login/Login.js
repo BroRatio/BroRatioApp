@@ -1,6 +1,4 @@
 import React, { Component, Fragment } from 'react'
-// import AppBar from '@material-ui/core/AppBar';
-// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import CloudUploadIcon from '@material-ui/icons/CloudUpload';
@@ -15,6 +13,7 @@ const style = {
 };
 
 export default class Login extends Component {
+    // Initial setup for person count will be moved to other pages later
     state = {
         male: 0,
         female: 0,
@@ -23,24 +22,11 @@ export default class Login extends Component {
     };
     render() {
         return (
-
             <Fragment>
-                {/* <AppBar position="static" title='Title Here'>
-                    <Typography titleStyle={{ textAlign: "center", margin: "auto" }} variant="display3" color="inherit">
-                        Title Here
-                    </Typography>
-                </AppBar> */}
-
                 <Paper style={style}>
                     <CameraControl>
                         For the Camera
                 </CameraControl>
-                    {/* <CircularProgress /> */}
-                    {/* <Button style={{ marginTop: '5em' }} variant='contained' size='large' color='primary'
-                        containerElement='label'>
-                        Take Picture
-                </Button> */}
-
                     <Score
                         male={this.state.male}
                         female={this.state.female}
@@ -48,19 +34,15 @@ export default class Login extends Component {
                         message={this.state.message}
                     />
                 </Paper>
-
             </Fragment>
-
         )
     }
-
 }
 
-
 // ===================== ===================== ===================== ===================== //
-//  Code for when user uploads an img from their PC, This code will need axios post too.   //
+//  Button for when user uploads an img from their PC, This code will need axios post too. //
 // ===================== ===================== ===================== ===================== //
-//                 <br />
+//           
 //         <Button style={{ marginTop: '5em' }} variant='contained' size="large" color='primary'
 //             containerElement='label'
 //             label='My Label'>
@@ -70,3 +52,4 @@ export default class Login extends Component {
 //             Upload Image
 // <CloudUploadIcon style={{ marginLeft: "5px" }} />
 //         </Button>
+//

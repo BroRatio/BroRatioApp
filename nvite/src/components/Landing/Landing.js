@@ -182,7 +182,7 @@ class PersistentDrawer extends React.Component {
             })}
           >
             {/* <div className={classes.drawerHeader} /> */}
-       {/* Content goes in here */} <Login />
+       {/* Content goes in here => */} <Login />
           </main>
           {after}
         </div>
