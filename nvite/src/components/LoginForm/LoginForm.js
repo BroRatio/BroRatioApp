@@ -29,6 +29,16 @@ export default class Login extends Component {
             user: "",
             password: ""
         });
+          //   axios.post('/user', {
+  //   user: 'Fred',
+  //   password: 'Flintstone'
+  // })
+  // .then(function (response) {
+  //   console.log(response);
+  // })
+  // .catch(function (error) {
+  //   console.log(error);
+  // });
         }
     };
 
