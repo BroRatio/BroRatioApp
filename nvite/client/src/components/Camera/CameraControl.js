@@ -4,7 +4,7 @@ import Webcam from "react-webcam";
 // Material-UI imports
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import "../Score/Score.css";
+import "./Camera.css";
 
 //Extended
 class WebcamCapture extends React.Component {
@@ -13,7 +13,9 @@ class WebcamCapture extends React.Component {
     male: 0,
     female: 0,
     mood: null,
-    message: null
+    message: null,
+    ageLow: 0,
+    ageHigh: 0
   };
 
   setRef = webcam => {
@@ -29,13 +31,16 @@ class WebcamCapture extends React.Component {
       .then(response => {
         // this.setState({ results: response });
         // console.log(this.state.results);
-        // console.log(response.data.malesObject[0].Emotions);
+        console.log(response.data.malesObject[0].AgeRange);
         this.setState({
           male: response.data.maleCount,
           female: response.data.femaleCount
         });
         if (response.data.malesObject.length > 0) {
+          // for (let i in response.data.malesObject.length)
           this.setState({
+            ageLow: response.data.malesObject[0].AgeRange.Low,
+            ageHigh: response.data.malesObject[0].AgeRange.High,
             mood: response.data.malesObject[0].Emotions[0].Type
           });
         }
@@ -45,16 +50,10 @@ class WebcamCapture extends React.Component {
           });
         }, 1000);
         // console.log(this.state.maleCount);
+      })
+      .catch(function(error) {
+        console.log(error);
       });
-    //   axios.post('/user', {
-    //   listOfImages: imgsrc,
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
   };
 
   render() {
@@ -93,6 +92,11 @@ class WebcamCapture extends React.Component {
             <span>Female: {this.state.female}</span>
           </p>
           <p className="mood">Mood: {this.state.mood}</p>
+          <p className="age">
+            <span>Age Range: {this.state.ageLow}</span>
+            <span> - </span>
+            <span>{this.state.ageHigh}</span>
+          </p>
         </div>
       </div>
     );
