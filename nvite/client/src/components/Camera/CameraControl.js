@@ -34,7 +34,8 @@ class WebcamCapture extends React.Component {
         console.log(response.data.malesObject[0].Emotions);
         this.setState({
           male: response.data.maleCount,
-          female: response.data.femaleCount
+          female: response.data.femaleCount,
+          message: "Analysis complete! Take another photo..."
         });
         if (response.data.malesObject.length > 0) {
           // for (let i in response.data.malesObject.length)
@@ -44,8 +45,6 @@ class WebcamCapture extends React.Component {
             mood: response.data.malesObject[0].Emotions[0].Type
           });
         }
-        this.setState({ message: "Analysis complete! Take another photo..." });
-        // console.log(this.state.maleCount);
       })
       .catch(function(error) {
         console.log(error);
