@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from "react";
+// Material-UI Imports
 import Paper from "@material-ui/core/Paper";
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+// Componennt Imports
 import CameraControl from "../../components/Camera/CameraControl";
+import LoginBar from "../../components/LoginBar/LoginBar";
 // import Score from '../Score/Score'
 
 const style = {
@@ -25,6 +28,7 @@ export default class Login extends Component {
     // const { score } = this.props;
     return (
       <Fragment>
+        <LoginBar />
         <Paper style={style}>
           {/* <div style={{border: "1px solid white", textAlign: 'center', margin: "auto"}}> */}
           <CameraControl>For the Camera</CameraControl>
