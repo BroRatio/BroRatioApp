@@ -1,4 +1,5 @@
 .score,
+.mood,
 .message {
   margin: 2px;
   color: white;
@@ -7,8 +8,13 @@
     2px 0px 7px grey;
   text-align: center;
 }
-.message {
+.mood {
   font-weight: bold;
+}
+.message {
+  font-style: italic;
+  font-size: 28px;
+  color: #fffafa;
 }
 span {
   margin: 0px 10px 0px 25px;

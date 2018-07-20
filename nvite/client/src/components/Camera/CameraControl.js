@@ -12,7 +12,8 @@ class WebcamCapture extends React.Component {
     // results: [],
     male: 0,
     female: 0,
-    mood: null
+    mood: null,
+    message: null
   };
 
   setRef = webcam => {
@@ -21,6 +22,7 @@ class WebcamCapture extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
+    this.setState({ message: "Analyzing photo..." });
     // console.log(imageSrc);
     axios
       .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
@@ -37,6 +39,11 @@ class WebcamCapture extends React.Component {
             mood: response.data.malesObject[0].Emotions[0].Type
           });
         }
+        setTimeout(() => {
+          this.setState({
+            message: "Analysis finished! Take another photo..."
+          });
+        }, 1000);
         // console.log(this.state.maleCount);
       });
     //   axios.post('/user', {
@@ -79,12 +86,13 @@ class WebcamCapture extends React.Component {
           Capture photo
         </Button>
         <div className="container">
+          <p className="message">{this.state.message}</p>
           <p className="score">
             <span>Male: {this.state.male}</span>
             <span>|</span>
             <span>Female: {this.state.female}</span>
           </p>
-          <p className="message">Mood: {this.state.mood}</p>
+          <p className="mood">Mood: {this.state.mood}</p>
         </div>
       </div>
     );
