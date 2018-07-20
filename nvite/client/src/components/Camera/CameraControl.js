@@ -31,7 +31,7 @@ class WebcamCapture extends React.Component {
       .then(response => {
         // this.setState({ results: response });
         // console.log(this.state.results);
-        console.log(response.data.malesObject[0].AgeRange);
+        console.log(response.data.malesObject[0].Emotions);
         this.setState({
           male: response.data.maleCount,
           female: response.data.femaleCount
@@ -46,7 +46,7 @@ class WebcamCapture extends React.Component {
         }
         setTimeout(() => {
           this.setState({
-            message: "Analysis finished! Take another photo..."
+            message: "Analysis complete! Take another photo..."
           });
         }, 1000);
         // console.log(this.state.maleCount);
