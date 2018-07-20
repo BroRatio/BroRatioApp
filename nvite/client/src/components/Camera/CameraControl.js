@@ -2,14 +2,9 @@ import React from "react";
 import Webcam from "react-webcam";
 // import Score from "../Score/Score";
 // Material-UI imports
-<<<<<<< HEAD
-import Button from '@material-ui/core/Button';
-import axios from 'axios';
-=======
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import "../Score/Score.css";
->>>>>>> origin/master
 
 //Extended
 class WebcamCapture extends React.Component {
@@ -26,24 +21,6 @@ class WebcamCapture extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
-<<<<<<< HEAD
-    console.log(imageSrc);
-    axios
-    .post("./api/userInfo/analyze",{imageEncoded:imageSrc})
-    .then(function (response) {
-        console.log(response);
-    })
-  //   axios.post('/user', {
-  //   firstName: 'Fred',
-  //   lastName: 'Flintstone'
-  // })
-  // .then(function (response) {
-  //   console.log(response);
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // });
-=======
     // console.log(imageSrc);
     axios
       .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
@@ -71,7 +48,6 @@ class WebcamCapture extends React.Component {
     // .catch(function (error) {
     //   console.log(error);
     // });
->>>>>>> origin/master
   };
 
   render() {
