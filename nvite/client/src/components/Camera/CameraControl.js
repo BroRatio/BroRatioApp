@@ -2,12 +2,8 @@ import React from "react";
 import Webcam from "react-webcam";
 import Score from "../Score/Score";
 // Material-UI imports
-<<<<<<< HEAD:nvite/client/src/components/Camera/CameraControl.js
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-=======
-import Button from "@material-ui/core/Button";
->>>>>>> origin/master:nvite/src/components/Camera/CameraControl.js
 
 //Extended
 class WebcamCapture extends React.Component {
@@ -24,7 +20,6 @@ class WebcamCapture extends React.Component {
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
     console.log(imageSrc);
-<<<<<<< HEAD:nvite/client/src/components/Camera/CameraControl.js
     axios
     .post("./api/userInfo/analyze",{imageEncoded:imageSrc})
     .then(function (response) {
@@ -40,17 +35,6 @@ class WebcamCapture extends React.Component {
   // .catch(function (error) {
   //   console.log(error);
   // });
-=======
-    //   axios.post('/user', {
-    //   listOfImages: imgsrc,
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
->>>>>>> origin/master:nvite/src/components/Camera/CameraControl.js
   };
 
   render() {
