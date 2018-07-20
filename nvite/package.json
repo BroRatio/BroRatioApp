@@ -23,8 +23,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "express-router": "0.0.1",
-    "install": "^0.12.1",
     "if-env": "^1.0.4",
+    "install": "^0.12.1",
     "mongoose": "^5.2.4",
     "path": "^0.12.7",
     "yarn": "^1.7.0"

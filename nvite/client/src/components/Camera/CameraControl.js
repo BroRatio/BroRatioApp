@@ -1,16 +1,23 @@
 import React from "react";
 import Webcam from "react-webcam";
-import Score from "../Score/Score";
+// import Score from "../Score/Score";
 // Material-UI imports
+<<<<<<< HEAD
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+=======
+import Button from "@material-ui/core/Button";
+import axios from "axios";
+import "../Score/Score.css";
+>>>>>>> origin/master
 
 //Extended
 class WebcamCapture extends React.Component {
   state = {
+    // results: [],
     male: 0,
     female: 0,
-    mood: ""
+    mood: null
   };
 
   setRef = webcam => {
@@ -19,6 +26,7 @@ class WebcamCapture extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
+<<<<<<< HEAD
     console.log(imageSrc);
     axios
     .post("./api/userInfo/analyze",{imageEncoded:imageSrc})
@@ -35,6 +43,35 @@ class WebcamCapture extends React.Component {
   // .catch(function (error) {
   //   console.log(error);
   // });
+=======
+    // console.log(imageSrc);
+    axios
+      .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
+      .then(response => {
+        // this.setState({ results: response });
+        // console.log(this.state.results);
+        // console.log(response.data.malesObject[0].Emotions);
+        this.setState({
+          male: response.data.maleCount,
+          female: response.data.femaleCount
+        });
+        if (response.data.malesObject.length > 0) {
+          this.setState({
+            mood: response.data.malesObject[0].Emotions[0].Type
+          });
+        }
+        // console.log(this.state.maleCount);
+      });
+    //   axios.post('/user', {
+    //   listOfImages: imgsrc,
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+>>>>>>> origin/master
   };
 
   render() {
@@ -65,11 +102,14 @@ class WebcamCapture extends React.Component {
         >
           Capture photo
         </Button>
-        <Score
-          male={this.state.male}
-          female={this.state.female}
-          mood={this.state.mood}
-        />
+        <div className="container">
+          <p className="score">
+            <span>Male: {this.state.male}</span>
+            <span>|</span>
+            <span>Female: {this.state.female}</span>
+          </p>
+          <p className="message">Mood: {this.state.mood}</p>
+        </div>
       </div>
     );
   }
