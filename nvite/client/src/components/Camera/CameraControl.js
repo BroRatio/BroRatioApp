@@ -45,16 +45,10 @@ class WebcamCapture extends React.Component {
           });
         }, 1000);
         // console.log(this.state.maleCount);
+      })
+      .catch(function(error) {
+        console.log(error);
       });
-    //   axios.post('/user', {
-    //   listOfImages: imgsrc,
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
   };
 
   render() {
