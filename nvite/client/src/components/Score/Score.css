@@ -1,21 +1,20 @@
-.score, .message{
+.score,
+.message {
   margin: 2px;
   color: white;
   font-size: 26px;
-  text-shadow: -1px -1px 1px #aaa,
-             0px 2px 3px grey,
-             4px 2px 5px grey,
-             2px 0px 7px grey;
+  text-shadow: -1px -1px 1px #aaa, 0px 2px 3px grey, 4px 2px 5px grey,
+    2px 0px 7px grey;
   text-align: center;
 }
-.message{
-  font-weight:bold;
+.message {
+  font-weight: bold;
 }
-span{
-  margin:0px 10px 0px 25px;
+span {
+  margin: 0px 10px 0px 25px;
 }
-.container{
-  max-width: 100%!important;
+.container {
+  max-width: 100% !important;
   position: relative;
   display: block;
 }
