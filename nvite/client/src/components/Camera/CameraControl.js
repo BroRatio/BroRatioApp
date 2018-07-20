@@ -4,7 +4,7 @@ import Webcam from "react-webcam";
 // Material-UI imports
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import "../Score/Score.css";
+import "./Camera.css";
 
 //Extended
 class WebcamCapture extends React.Component {
