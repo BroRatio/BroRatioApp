@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+// Material-UI Imports
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,11 +16,11 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData';
-import Login from '../Login/Login'
-import SimpleModal from '../SimpleModal/SimpleModal'
 import Tooltip from '@material-ui/core/Tooltip';
-
+import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+// Component imports
+import Login from '../../components/Login/Login';
+import SimpleModal from '../../components/SimpleModal/SimpleModal'
 
 const drawerWidth = 220;
 
