@@ -1,22 +1,32 @@
 {
   "name": "nvite",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^1.4.0",
-    "@material-ui/icons": "^1.1.0",
-    "axios": "^0.18.0",
-    "install": "^0.12.1",
-    "npm": "^6.2.0",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4",
-    "react-webcam": "^1.0.1"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && yarn install;",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.278.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-router": "0.0.1",
+    "install": "^0.12.1",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.2.4",
+    "path": "^0.12.7",
+    "yarn": "^1.7.0"
   }
 }
