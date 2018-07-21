@@ -17,7 +17,7 @@
   font-size: 28px;
   color: #fffafa;
 }
-.score > span {
+.score + span {
   margin: 0px 10px 0px 25px;
 }
 .container {
