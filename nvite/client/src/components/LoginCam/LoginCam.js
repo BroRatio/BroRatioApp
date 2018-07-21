@@ -1,6 +1,5 @@
 import React from "react";
 import Webcam from "react-webcam";
-// import Score from "../Score/Score";
 // Material-UI imports
 import Button from "@material-ui/core/Button";
 import axios from "axios";
