@@ -75,7 +75,7 @@ class WebcamCapture extends React.Component {
 
   }
 
-  
+  defaultImage
   render() {
     const videoConstraints = {
       width: 1280,
