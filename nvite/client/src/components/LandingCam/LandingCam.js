@@ -6,15 +6,6 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import "./Camera.css";
 
-const style = {
-  height: 430,
-  width: 620,
-  textAlign: "center",
-  borderRadius: "100px",
-  margin: "auto"
-  // marginTop: "5em"
-};
-
 //Extended
 class WebcamCapture extends React.Component {
   state = {
