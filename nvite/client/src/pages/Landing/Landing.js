@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 // Material-UI Imports
 import { withStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Paper from "@material-ui/core/Paper";
-import Icon from "@material-ui/core/Icon";
-// import MenuItem from '@material-ui/core/MenuItem';
-import Typography from "@material-ui/core/Typography";
-// import TextField from '@material-ui/core/TextField';
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  Drawer,
+  AppBar,
+  Toolbar,
+  List,
+  Paper,
+  Icon,
+  Typography,
+  Divider,
+  IconButton,
+  Tooltip
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import Tooltip from "@material-ui/core/Tooltip";
 import { mailFolderListItems, otherMailFolderListItems } from "./tileData";
 // Component imports
 import LandingCam from "../../components/LandingCam/LandingCam";

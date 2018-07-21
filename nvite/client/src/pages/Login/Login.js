@@ -1,23 +1,12 @@
 import React, { Component } from "react";
 // Material-UI Imports
-// import Paper from "@material-ui/core/Paper";
-// import CircularProgress from '@material-ui/core/CircularProgress';
-import Button from "@material-ui/core/Button";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import { Typography, Button } from "../../../node_modules/@material-ui/core";
 // Component Imports
-// import LoginCam from "../../components/LoginCam/LoginCam";
 import LoginBar from "../../components/LoginBar/LoginBar";
-// import LoginForm from "../../components/LoginForm/LoginForm";
-import { Typography } from "../../../node_modules/@material-ui/core";
-// import Score from '../Score/Score'
 
 const style = {
-  //   height: 475,
-  //   width: 620,
   textAlign: "center",
   color: "white",
-  //   borderRadius: "100px",
-  //   margin: "auto"
   marginBottom: "7px"
 };
 
@@ -142,15 +131,6 @@ export default class Login extends Component {
             />
           </Button>
           <br />
-          {/* <Button
-            style={{ marginBottom: "5px" }}
-            variant="contained"
-            size="large"
-            color="default"
-          >
-            Upload Image
-            <CloudUploadIcon style={{ marginLeft: "5px" }} />
-          </Button> */}
           <Typography
             variant="title"
             className="message"
@@ -186,17 +166,3 @@ export default class Login extends Component {
     );
   }
 }
-
-// ===================== ===================== ===================== ===================== //
-//  Button for when user uploads an img from their PC, This code might need axios post too.//
-// ===================== ===================== ===================== ===================== //
-
-//         <Button style={{ marginTop: '5em' }} variant='contained' size="large" color='primary'
-//             containerElement='label'
-//             label='My Label'>
-//             <input type="file" />
-//         </Button>
-//         <Button style={{ marginTop: '5em' }} variant="contained" size="large" color="default">
-//             Upload Image
-// <CloudUploadIcon style={{ marginLeft: "5px" }} />
-//         </Button>

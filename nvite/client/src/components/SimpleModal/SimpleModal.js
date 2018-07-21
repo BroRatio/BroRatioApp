@@ -2,9 +2,7 @@ import React from "react";
 // Material-UI
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Modal from "@material-ui/core/Modal";
-import Button from "@material-ui/core/Button";
+import { Typography, Modal, Button } from "@material-ui/core";
 // Components
 import LoginForm from "../LoginForm/LoginForm";
 
@@ -74,7 +72,6 @@ class SimpleModal extends React.Component {
             <Typography variant="subheading" id="simple-modal-description">
               <LoginForm />
             </Typography>
-            {/* <SimpleModalWrapped /> */}
           </div>
         </Modal>
       </div>
