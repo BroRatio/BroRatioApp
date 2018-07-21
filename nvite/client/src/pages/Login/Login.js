@@ -74,6 +74,7 @@ export default class Login extends Component {
               onChange={this.handleInputChange}
               value={this.state.img0}
               type="file"
+              accept="image/*"
             />
           </Button>
           <br />
@@ -89,6 +90,7 @@ export default class Login extends Component {
               onChange={this.handleInputChange}
               value={this.state.img1}
               type="file"
+              accept="image/*"
             />
           </Button>
           <br />
@@ -104,6 +106,7 @@ export default class Login extends Component {
               onChange={this.handleInputChange}
               value={this.state.img2}
               type="file"
+              accept="image/*"
             />
           </Button>
           <br />
@@ -119,6 +122,7 @@ export default class Login extends Component {
               onChange={this.handleInputChange}
               value={this.state.img3}
               type="file"
+              accept="image/*"
             />
           </Button>
           <br />
@@ -134,10 +138,11 @@ export default class Login extends Component {
               onChange={this.handleInputChange}
               value={this.state.img4}
               type="file"
+              accept="image/*"
             />
           </Button>
           <br />
-          <Button
+          {/* <Button
             style={{ marginBottom: "5px" }}
             variant="contained"
             size="large"
@@ -145,7 +150,7 @@ export default class Login extends Component {
           >
             Upload Image
             <CloudUploadIcon style={{ marginLeft: "5px" }} />
-          </Button>
+          </Button> */}
           <Typography
             variant="title"
             className="message"
