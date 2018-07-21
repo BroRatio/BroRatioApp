@@ -46,6 +46,11 @@ class WebcamCapture extends React.Component {
               mood: response.data.malesObject[0].Emotions[0].Type,
               url: "/images/imageMainuser-random.png?" + Date.toString()
             });
+            var c=document.getElementById("canvas");
+            var ctx=c.getContext("2d");
+            ctx.rect(20,20,150,100);
+            ctx.stroke();
+
           } catch (err) {
             console.log(err);
 
@@ -62,7 +67,15 @@ class WebcamCapture extends React.Component {
         console.log(error);
       });
   };
+  componentDidMount(){
+    this.setState({url:"http://jewel993.com/wp-content/uploads/missing.jpg"})
+  }
 
+  DisplayImage(props){
+
+  }
+
+  
   render() {
     const videoConstraints = {
       width: 1280,
@@ -93,10 +106,10 @@ class WebcamCapture extends React.Component {
         </Button>
         <div className="container">
           <p className="message">{this.state.message}
-
-            <img src={this.state.url+'?'+ new Date().getTime()} />
-
+           
+            <img  src={this.state.url+'?'+ new Date().getTime()} /> 
           </p>
+
           <p className="score">
             <span>Male: {this.state.male}</span>
             <span>|</span>
