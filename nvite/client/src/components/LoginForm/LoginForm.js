@@ -61,7 +61,8 @@ export default class Login extends Component {
             type="password"
           />
           <Button
-            variant="outlined"
+            variant="contained"
+            size="small"
             color="primary"
             onClick={this.handleFormSubmit}
           >

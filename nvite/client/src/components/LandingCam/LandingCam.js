@@ -1,6 +1,5 @@
 import React from "react";
 import Webcam from "react-webcam";
-// import Score from "../Score/Score";
 // Material-UI imports
 import Button from "@material-ui/core/Button";
 import axios from "axios";
@@ -9,7 +8,7 @@ import "./Camera.css";
 //Extended
 class WebcamCapture extends React.Component {
   state = {
-    // results: [],
+    disable: false,
     male: 0,
     female: 0,
     mood: null,
@@ -25,17 +24,19 @@ class WebcamCapture extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
-    this.setState({ message: "Analyzing photo..." });
+    this.setState({ message: "Analyzing photo...", disable: true });
     // console.log(imageSrc);
     axios
       .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
       .then(response => {
         // this.setState({ results: response });
         // console.log(this.state.results);
-        console.log(response.data.malesObject[0].AgeRange);
+        console.log(response.data.malesObject[0].Emotions);
         this.setState({
+          disable: false,
           male: response.data.maleCount,
-          female: response.data.femaleCount
+          female: response.data.femaleCount,
+          message: "Analysis complete! Take another photo..."
         });
         if (response.data.malesObject.length > 0) {
           // for (let i in response.data.malesObject.length)
@@ -56,12 +57,6 @@ class WebcamCapture extends React.Component {
 
           }
         }
-        setTimeout(() => {
-          this.setState({
-            message: "Analysis finished! Take another photo..."
-          });
-        }, 1000);
-        // console.log(this.state.maleCount);
       })
       .catch(function (error) {
         console.log(error);
@@ -101,6 +96,7 @@ class WebcamCapture extends React.Component {
           size="small"
           color="primary"
           onClick={this.capture}
+          disabled={this.state.disable}
         >
           Capture photo
         </Button>

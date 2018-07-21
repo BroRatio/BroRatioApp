@@ -3,26 +3,36 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 // Material-UI Imports
 import { withStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Icon from "@material-ui/core/Icon";
-// import MenuItem from '@material-ui/core/MenuItem';
-import Typography from "@material-ui/core/Typography";
-// import TextField from '@material-ui/core/TextField';
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  Drawer,
+  AppBar,
+  Toolbar,
+  List,
+  Paper,
+  Icon,
+  Typography,
+  Divider,
+  IconButton,
+  Tooltip
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import Tooltip from "@material-ui/core/Tooltip";
 import { mailFolderListItems, otherMailFolderListItems } from "./tileData";
 // Component imports
-import Login from "../../components/Login/Login";
+import LandingCam from "../../components/LandingCam/LandingCam";
 import SimpleModal from "../../components/SimpleModal/SimpleModal";
 
 const drawerWidth = 220;
+// Paper Style
+const style = {
+  height: 430,
+  width: 620,
+  textAlign: "center",
+  borderRadius: "100px",
+  margin: "auto"
+  // marginTop: "5em"
+};
 
 const styles = theme => ({
   root: {
@@ -201,7 +211,11 @@ class PersistentDrawer extends React.Component {
             )}
           >
             {/* <div className={classes.drawerHeader} /> */}
-            {/* Content goes in here => */} <Login />
+            {/* Content goes in here => */}
+            <Paper style={style}>
+              <LandingCam>For the Camera</LandingCam>
+            </Paper>
+            <br />
           </main>
           {after}
         </div>
