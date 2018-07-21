@@ -1,12 +1,14 @@
 const router = require("express").Router();
 const imgController = require("../../controller/imageController");
+const path = require("path");
 
-// Matches with "/api/imagePath"
-router.route("/")
-  //.post(imgController.create);
+module.exports = (app) => {
+     //This is needed to serve the images
+     app.get("/images/:id", function (req, res) {
+      var name = req.params.id;
+      console.log(name);
+      var npath = path.join(__dirname, '../../api/images/' + name);
+      res.sendFile(npath);
+  });
 
-router
-  .route("/:id")
-  //.get(imgController.findById)
-
-module.exports = router;
+}

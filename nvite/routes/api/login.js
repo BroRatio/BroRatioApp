@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const userInfoController = require("../../controller/userInfoController");
+const userInfoController = require("../../controller/loginController");
 
-// // Matches with "/api/imagePath"
-// router.route("/analyze")
-//   .post(userInfoController.getPictureInfoRequest);
+// Matches with "/api/imagePath"
+router.route("/auth(0.1)")
+  //.post(userInfoController.getPictureInfoRequest);
 
-// router
-//   .route("/:id")
-//   //.get(imgController.findById)
+router
+  .route("/:id")
+  //.get(imgController.findById)
 
 module.exports = router;
