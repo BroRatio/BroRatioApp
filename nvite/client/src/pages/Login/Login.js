@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper";
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 // Componennt Imports
-import CameraControl from "../../components/Camera/CameraControl";
+import LoginCam from "../../components/LoginCam/LoginCam";
 import LoginBar from "../../components/LoginBar/LoginBar";
 // import Score from '../Score/Score'
 
@@ -18,26 +18,12 @@ const style = {
 };
 
 export default class Login extends Component {
-  // Initial setup for person count will be moved to other pages later
-  // state = {
-  //     male: 0,
-  //     female: 0,
-  //     mood: '',
-  // };
   render() {
-    // const { score } = this.props;
     return (
       <Fragment>
         <LoginBar />
         <Paper style={style}>
-          {/* <div style={{border: "1px solid white", textAlign: 'center', margin: "auto"}}> */}
-          <CameraControl>For the Camera</CameraControl>
-          {/* </div> */}
-          {/* <Score
-                        male={this.state.male}
-                        female={this.state.female}
-                        mood={this.state.mood}
-                    /> */}
+          <LoginCam>For the Camera</LoginCam>
         </Paper>
         <br />
       </Fragment>
