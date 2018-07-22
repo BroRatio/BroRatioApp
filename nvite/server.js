@@ -25,48 +25,22 @@ if (process.env.NODE_ENV === "production") {
 
 app.post('/api/login/auth', (req, res, next) => {
   console.log("recieved");
-  console.log(JSON.stringify(req.body));
+  //console.log(JSON.stringify(req.body));
+  var username = req.body.user;
+  var password = req.body.password;
   console.log(req.files);
-  console.log(req.files['image1'].data)
-  var img1 = req.files['image1'].data;
-  let imgeName1 = "./api/images/1" + "username" + ".png"
-  console.log("wtf-SAVER");
-  require('fs').writeFile(imgeName1, img1, function () {
-    console.log('FILE SAVED AS : ' + imgeName1);
+  var img1 = req.files['image1'];
+  console.log(img1);
+  var num = 0;
+  img1.forEach(element => {
+    let imgeName1 = "./api/images/" + (++num) + username + ".png"
+    console.log("wtf-SAVER");
+    require('fs').writeFile(imgeName1, element.data, function () {
+      console.log('FILE SAVED AS : ' + imgeName1);
+    })
+  });
 
-  })
 
-  // var img2 = req.files['image2'].data;
-  // let imgeName2 = "./api/images/2" + "username" + ".png"
-  // console.log("wtf-SAVER");
-  // require('fs').writeFile(imgeName1, img2, function () {
-  //   console.log('FILE SAVED AS : ' + imgeName2);
-
-  // })
-
-  // var img3 = req.files['image3'].data;
-  // let imgeName3 = "./api/images/3" + "username" + ".png"
-  // console.log("wtf-SAVER");
-  // require('fs').writeFile(imgeName3, img3, function () {
-  //   console.log('FILE SAVED AS : ' + imgeName3);
-
-  // })
-
-  // var img4 = req.files['image4'].data;
-  // let imgeName4 = "./api/images/4" + "username" + ".png"
-  // console.log("wtf-SAVER");
-  // require('fs').writeFile(imgeName4, img4, function () {
-  //   console.log('FILE SAVED AS : ' + imgeName4);
-
-  // })
-
-  // var img5 = req.files['image5'].data;
-  // let imgeName5 = "./api/images/5" + "username" + ".png"
-  // console.log("wtf-SAVER");
-  // require('fs').writeFile(imgeName5, img5, function () {
-  //   console.log('FILE SAVED AS : ' + imgeName5);
-
-  // })
 })
 
 
