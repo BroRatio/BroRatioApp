@@ -6,6 +6,8 @@ import Landing from "./pages/Landing/Landing";
 import Login from "./pages/Login/Login";
 //import NoMatch from "./components/SimpleModal";
 // import LoginForm from './components/LoginForm/LoginForm'
+import Uploader from './components/Uploader/dropzoene'
+//import reactUploader from './components/Uploader/reactUploader'
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/uploader" component={Uploader} />
+          {/* <Route exact path="/reactUploader" component={reactUploader} /> */}
           {/* <Route exact path="/" component={Landing} /> */}
           {/* <Route component={NoMatch} /> */}
         </Switch>

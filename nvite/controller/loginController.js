@@ -41,14 +41,34 @@ function awsCompareFaces(imageIn,imageServer) {
 
 // findAll searches the NYT API and returns only the entries we haven't already saved
 module.exports = {
-  compareFaces: function(req, res) {
-    let myRequest = req.body.imageEncoded;
-    const imgFix1 = myRequest.replace(/data:image\/png;base64,/gi, "")
-    let img1 = new Buffer(imgFix1, 'base64');
-    username = "user-"+"random";
-    let imgeName = "./api/images/imageCompare" + username + ".png"
-
+    getLoginInfoRequest: function(req, res) {
+    let body = req.body;
+  //  console.log(JSON.stringify(body))
+    //console.log("request"+req)
+    // console.log(req)
+    // username = "testImage"
+    // console.log(body)
+    // console.log(req);
+    let imageFile = req.files.file;
+        
+    imageFile.mv(`/api/images/${req.body.filename}.jpg`, function(err) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+  
+      res.json({file: `public/${req.body.filename}.jpg`});
+    });
+    // let img1 = new Buffer(body, 'binary');
+    // file = "./api/images/uploadedMain" + username + ".png"
+    // require('fs').writeFile(file, img1, 'binary', function(err) {})
+    // // const imgFix1 = myRequest.replace(/data:image\/png;base64,/gi, "")
+    //     const imgFix1 = myRequest;
+    //     let img1 = new Buffer(imgFix1, 'base64');
+    //     username = "user-"+"random";
+    //     let imgeName = "./api/images/uploadedMain" + username + ".png"
+    //     console.log("wtf i got data here bro");
+    //     require('fs').writeFile(imgeName, img1, function () {
+    //         console.log('FILE SAVED AS : ' + imgeName);})
     //do the db-request to get a random picture
-
   }
 };

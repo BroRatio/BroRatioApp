@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const userInfoController = require("../../controller/loginController");
+const userLoginController = require("../../controller/loginController");
 
 // Matches with "/api/imagePath"
-router.route("/auth(0.1)")
-  //.post(userInfoController.getPictureInfoRequest);
+router.route("/auth")
+  .post(userLoginController.getLoginInfoRequest);
 
 router
   .route("/:id")
