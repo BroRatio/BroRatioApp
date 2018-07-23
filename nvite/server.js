@@ -9,6 +9,20 @@ const cors = require('cors');
 const busboy = require('connect-busboy');
 const db = require("./models");
 
+//https
+var key = fs.readFileSync('./selfsigned.key');
+var cert = fs.readFileSync( './selfsigned.crt' );
+//var ca = fs.readFileSync( './mydomain.csr' );
+
+//
+var options = {
+  key: key,
+  cert: cert
+  };
+
+var https = require('https');
+
+
 
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
@@ -104,9 +118,15 @@ app.get("/populated", function(req, res) {
 require("./routes/api/imagePath.js")(app);
 app.use(routes);
 
+// Send every other request to the React app
+// Define any API routes before this runs
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
+// // Start the API server
+// app.listen(PORT, () =>
+//   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
+// );
 
-// Start the API server
-app.listen(PORT, () =>
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
-);
+https.createServer(options, app).listen(443);
