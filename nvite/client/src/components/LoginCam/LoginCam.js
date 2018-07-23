@@ -103,10 +103,8 @@ class StartCam extends React.Component {
           <p className="message">{this.state.message}</p>
         </form>
         <br />
-        <Button variant="contained">
-          <a href="./signup" className="button" role="button">
-            Sign Up
-          </a>
+        <Button variant="contained" href="./signup">
+          Sign Up
         </Button>
       </div>
     );

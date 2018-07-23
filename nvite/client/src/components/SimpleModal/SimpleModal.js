@@ -50,7 +50,7 @@ class SimpleModal extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.handleOpen}>
+        <Button onClick={this.handleOpen} variant="contained">
           <Typography
             style={{ color: "white" }}
             variant="title"

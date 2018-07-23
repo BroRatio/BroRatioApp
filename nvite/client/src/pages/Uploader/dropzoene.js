@@ -38,7 +38,7 @@ export default class Basic extends React.Component {
         user: this.state.user,
         password: this.state.password
       };
-      var uploadOG = "😬 U-p-l-o-d-i-n-g 😬";
+      var uploadOG = "😬 U-p-l-o-a-d-i-n-g 😬";
 
       this.state.files.forEach(file => {
         uploadOG = uploadOG;
@@ -84,9 +84,9 @@ export default class Basic extends React.Component {
           <aside style={{ color: "white" }}>
             <h2>{this.state.warningState}</h2>
             <h2>
-              We recomend up to 😃 😃 😃 😃 😃 (5 face)pictures if available
+              We recommend up to 😃 😃 😃 😃 😃 (5 face)pictures if available
             </h2>
-            <ul>
+            <ul style={{ listStyle: "none" }}>
               {this.state.files.map(f => (
                 <li key={f.name}>
                   {f.name} - {f.size} bytes
@@ -118,9 +118,10 @@ export default class Basic extends React.Component {
         >
           Submit
         </Button>
-        <a href="./" className="button" role="button">
+        <br />
+        <Button variant="contained" href="./" style={{ marginTop: "10px" }}>
           Login Migos
-        </a>
+        </Button>
       </div>
     );
   }
