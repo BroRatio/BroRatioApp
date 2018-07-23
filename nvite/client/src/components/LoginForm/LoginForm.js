@@ -64,6 +64,7 @@ export default class Login extends Component {
             variant="contained"
             size="small"
             color="primary"
+            type="submit"
             onClick={this.handleFormSubmit}
           >
             Submit

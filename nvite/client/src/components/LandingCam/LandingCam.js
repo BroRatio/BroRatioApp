@@ -47,29 +47,28 @@ class WebcamCapture extends React.Component {
               mood: response.data.malesObject[0].Emotions[0].Type,
               url: "/images/imageMainuser-random.png?" + Date.toString()
             });
-            var c=document.getElementById("canvas");
-            var ctx=c.getContext("2d");
-            ctx.rect(20,20,150,100);
+            var c = document.getElementById("canvas");
+            var ctx = c.getContext("2d");
+            ctx.rect(20, 20, 150, 100);
             ctx.stroke();
-
           } catch (err) {
             console.log(err);
-
           }
         }
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   };
-  componentDidMount(){
-    this.setState({url:"http://jewel993.com/wp-content/uploads/missing.jpg"})
+  componentDidMount() {
+    this.setState({
+      url: "http://jewel993.com/wp-content/uploads/missing.jpg"
+    });
   }
 
- 
-  signOut(){
+  signOut() {
     localStorage.clear();
-    window.location.reload(); 
+    window.location.reload();
   }
   render() {
     const videoConstraints = {
@@ -101,9 +100,13 @@ class WebcamCapture extends React.Component {
           Capture photo
         </Button>
         <div className="container">
-          <p className="message">{this.state.message}
-           
-            <img  src={this.state.url+'?'+ new Date().getTime()} /> 
+          <p className="message">
+            {this.state.message}
+
+            <img
+              src={this.state.url + "?" + new Date().getTime()}
+              alt="No Results!"
+            />
           </p>
 
           <p className="score">
@@ -125,7 +128,7 @@ class WebcamCapture extends React.Component {
           color="primary"
           onClick={this.signOut}
         >
-          Sign - Out 
+          Sign - Out
         </Button>
       </div>
     );
