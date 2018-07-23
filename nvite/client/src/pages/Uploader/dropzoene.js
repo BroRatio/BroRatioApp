@@ -1,5 +1,5 @@
 import Dropzone from "react-dropzone";
-import React, { Component } from "react";
+import React from "react";
 import { post } from "superagent";
 import Button from "@material-ui/core/Button";
 
