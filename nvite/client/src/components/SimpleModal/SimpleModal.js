@@ -49,13 +49,9 @@ class SimpleModal extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
+      <div style={{ float: "right", marginRight: "2em" }}>
         <Button onClick={this.handleOpen} variant="contained">
-          <Typography
-            style={{ color: "white" }}
-            variant="title"
-            id="modal-title"
-          >
+          <Typography variant="title" id="modal-title">
             Login
           </Typography>
         </Button>
