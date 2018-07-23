@@ -2,28 +2,45 @@ import React from "react";
 import Webcam from "react-webcam";
 // Material-UI imports
 import Button from "@material-ui/core/Button";
-import axios from "axios";
+// import axios from "axios";
+
+const styles = {
+  width: "auto",
+  textAlign: "center"
+};
 
 //Extended
-class WebcamCapture extends React.Component {
+class StartCam extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      password: "",
+      message: "",
+      fail: ""
+    };
+  }
+
+  handleInputChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
   setRef = webcam => {
     this.webcam = webcam;
   };
 
-  capture = () => {
+  capture = e => {
+    e.preventDefault();
     const imageSrc = this.webcam.getScreenshot();
-    this.setState({ message: "Analyzing photo..." });
-    // console.log(imageSrc);
-    axios
-      .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
-      .then(response => {
-        // this.setState({ results: response });
-        // console.log(this.state.results);
-        console.log(response.data);
-      })
-      .catch(function(error) {
-        console.log(error);
+    this.setState({ image: imageSrc, message: "Logging in..." });
+    console.log(imageSrc, this.state.password);
+    setTimeout(() => {
+      this.setState({
+        fail: "Try logging in with your username if this fails."
       });
+    }, 9999);
   };
 
   render() {
@@ -34,7 +51,7 @@ class WebcamCapture extends React.Component {
     };
 
     return (
-      <div>
+      <div style={styles}>
         <Webcam
           audio={false}
           height={470}
@@ -46,16 +63,28 @@ class WebcamCapture extends React.Component {
           gutterBottom
         />
         <br />
-        <Button
-          variant="contained"
-          size="small"
-          color="primary"
-          onClick={this.capture}
-        >
-          Capture photo
-        </Button>
+        <p className="message">{this.state.fail}</p>
+        <form>
+          <input
+            placeholder="Password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleInputChange}
+            type="password"
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            size="small"
+            color="primary"
+            onClick={this.capture}
+          >
+            Capture photo
+          </Button>
+          <p className="message">{this.state.message}</p>
+        </form>
       </div>
     );
   }
 }
-export default WebcamCapture;
+export default StartCam;
