@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import Score from './components/Score/Score'
 import "./App.css";
 import Landing from "./pages/Landing/Landing";
-import Login from "./pages/Login/Login";
+// import SignUp from "./pages/SignUp/SignUp";
+import Start from "./pages/Start/Start";
 //import NoMatch from "./components/SimpleModal";
 // import LoginForm from './components/LoginForm/LoginForm'
-import Uploader from './components/Uploader/dropzoene'
+import Uploader from "./components/Uploader/dropzoene";
 //import reactUploader from './components/Uploader/reactUploader'
 
 const App = () => {
@@ -14,9 +15,12 @@ const App = () => {
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={Start} />
           <Route exact path="/signup" component={Uploader} />
+          <Route exact path="/landing" component={Landing} />
+          {/* <Route component={NoMatch} /> */}
+          {/* <Route exact path="/login" component={Login} /> */}
+          {/* <Route exact path="/signup" component={SignUp} /> */}
         </Switch>
       </div>
     </Router>
