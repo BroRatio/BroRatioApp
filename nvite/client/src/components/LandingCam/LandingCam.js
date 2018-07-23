@@ -14,7 +14,8 @@ class WebcamCapture extends React.Component {
     mood: null,
     message: null,
     ageLow: 0,
-    ageHigh: 0
+    ageHigh: 0,
+    url: ""
   };
 
   setRef = webcam => {
@@ -39,18 +40,37 @@ class WebcamCapture extends React.Component {
         });
         if (response.data.malesObject.length > 0) {
           // for (let i in response.data.malesObject.length)
-          this.setState({
-            ageLow: response.data.malesObject[0].AgeRange.Low,
-            ageHigh: response.data.malesObject[0].AgeRange.High,
-            mood: response.data.malesObject[0].Emotions[0].Type
-          });
+          try {
+            this.setState({
+              ageLow: response.data.malesObject[0].AgeRange.Low,
+              ageHigh: response.data.malesObject[0].AgeRange.High,
+              mood: response.data.malesObject[0].Emotions[0].Type,
+              url: "/images/imageMainuser-random.png?" + Date.toString()
+            });
+            var c=document.getElementById("canvas");
+            var ctx=c.getContext("2d");
+            ctx.rect(20,20,150,100);
+            ctx.stroke();
+
+          } catch (err) {
+            console.log(err);
+
+          }
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
+  componentDidMount(){
+    this.setState({url:"http://jewel993.com/wp-content/uploads/missing.jpg"})
+  }
 
+  DisplayImage(props){
+
+  }
+
+  defaultImage
   render() {
     const videoConstraints = {
       width: 1280,
@@ -81,7 +101,11 @@ class WebcamCapture extends React.Component {
           Capture photo
         </Button>
         <div className="container">
-          <p className="message">{this.state.message}</p>
+          <p className="message">{this.state.message}
+           
+            <img  src={this.state.url+'?'+ new Date().getTime()} /> 
+          </p>
+
           <p className="score">
             <span>Male: {this.state.male}</span>
             <span>|</span>

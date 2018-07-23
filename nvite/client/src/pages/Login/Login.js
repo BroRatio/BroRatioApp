@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Typography, Button } from "../../../node_modules/@material-ui/core";
 // Component Imports
 import LoginBar from "../../components/LoginBar/LoginBar";
+import axios, { post } from 'axios';
 
 const style = {
   textAlign: "center",
@@ -22,21 +23,53 @@ export default class Login extends Component {
       img3: null,
       img4: null
     };
+    
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.onChange = this.handleInputChange.bind(this);
+
+    this.fileInput = React.createRef();
+    this.fileInput2 = React.createRef();
+    this.fileInput3 = React.createRef();
+    this.fileInput4 = React.createRef();
   }
 
   handleInputChange = e => {
-    const { name, value } = e.target;
+    const { name, value} = e.target;
+    
+    //For the Username and Password
     this.setState({
       [name]: value
     });
   };
 
+  onChange(e) {
+    const {name} = e.target;
+    const formData = new FormData();
+    formData.append('file',e.target.files[0])
+    this.setState({
+      [name]:formData
+    })
+  };
+
+
   handleFormSubmit = e => {
     e.preventDefault();
+    console.log(e);
+
+    console.log(this.fileInput.current.name)
+    console.log(this.fileInput2.current.name)
+    
     if (this.state.user && this.state.password) {
       console.log(
         `Testing: ${this.state.user} ${this.state.password} ${this.state.img1}`
       );
+     console.log(this.state);
+   
+     axios.post("./api/login/auth", { loginPacket: this.state }).then(function(data){
+      console.log(data); 
+     })
+
       this.setState({
         user: "",
         password: ""
@@ -59,11 +92,11 @@ export default class Login extends Component {
             label="My Label"
           >
             <input
-              name="img0"
-              onChange={this.handleInputChange}
-              value={this.state.img0}
+              name="img0"   
               type="file"
               accept="image/*"
+              ref ={this.fileInput}
+              onChange={this.onChange}
             />
           </Button>
           <br />
@@ -73,13 +106,14 @@ export default class Login extends Component {
             color="primary"
             containerElement="label"
             label="My Label"
+        
           >
             <input
               name="img1"
-              onChange={this.handleInputChange}
-              value={this.state.img1}
               type="file"
               accept="image/*"
+              ref ={this.fileInput2}
+              onChange={this.onChange}
             />
           </Button>
           <br />
@@ -92,10 +126,10 @@ export default class Login extends Component {
           >
             <input
               name="img2"
-              onChange={this.handleInputChange}
-              value={this.state.img2}
               type="file"
               accept="image/*"
+              ref ={this.fileInput3}
+              onChange={this.onChange}
             />
           </Button>
           <br />
@@ -108,10 +142,10 @@ export default class Login extends Component {
           >
             <input
               name="img3"
-              onChange={this.handleInputChange}
-              value={this.state.img3}
               type="file"
               accept="image/*"
+              ref ={this.fileInput4}
+              onChange={this.onChange}
             />
           </Button>
           <br />
@@ -124,10 +158,10 @@ export default class Login extends Component {
           >
             <input
               name="img4"
-              onChange={this.handleInputChange}
-              value={this.state.img4}
               type="file"
               accept="image/*"
+              ref ={this.fileInput5}
+              onChange={this.onChange}
             />
           </Button>
           <br />
