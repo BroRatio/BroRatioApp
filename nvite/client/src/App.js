@@ -6,7 +6,7 @@ import Landing from "./pages/Landing/Landing";
 import Login from "./pages/Login/Login";
 //import NoMatch from "./components/SimpleModal";
 // import LoginForm from './components/LoginForm/LoginForm'
-import Uploader from './components/Uploader/dropzoene'
+import Uploader from './pages/Uploader/dropzoene'
 
 const App = () => {
   return (
