@@ -14,7 +14,7 @@ class StartCam extends React.Component {
   constructor() {
     super();
     this.state = {
-      password: "",
+      username: "",
       message: "",
       fail: ""
     };
@@ -34,8 +34,10 @@ class StartCam extends React.Component {
   capture = e => {
     e.preventDefault();
     const imageSrc = this.webcam.getScreenshot();
+    //Post request happens to send a image and a user password, we get response indicating if
+    //the login was a success 
     this.setState({ image: imageSrc, message: "Logging in..." });
-    console.log(imageSrc, this.state.password);
+    console.log(imageSrc, this.state.username);
     setTimeout(() => {
       this.setState({
         fail: "Try logging in with your username if this fails."
@@ -66,9 +68,9 @@ class StartCam extends React.Component {
         <p className="message">{this.state.fail}</p>
         <form>
           <input
-            placeholder="Password"
-            name="password"
-            value={this.state.password}
+            placeholder="UserName"
+            name="username"
+            value={this.state.username}
             onChange={this.handleInputChange}
             type="password"
           />
@@ -79,7 +81,7 @@ class StartCam extends React.Component {
             color="primary"
             onClick={this.capture}
           >
-            Capture photo
+            Login With Picture
           </Button>
           <p className="message">{this.state.message}</p>
         </form>

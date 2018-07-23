@@ -11,8 +11,10 @@ export default class Basic extends React.Component {
             files: [],
             user: "",
             password:"",
-            num:1
+            num:1,
+            warningState:""
         }
+        
     }
 
     onDrop(files) {
@@ -29,40 +31,59 @@ export default class Basic extends React.Component {
     };
 
     onUploadClick() {
-        const req = post('/api/login/auth');
-
+       
+       if(this.state.files.length > 2){
+        this.setState({
+            warningState : ""
+        })
+        const req = post('/api/login/signauth');
         var userData = {
             user: this.state.user,
             password: this.state.password
         }
+        var uploadOG = "😬U-p-l-o-d-i-n-g😬"
+      
         this.state.files.forEach(file => {
-
+            uploadOG = uploadOG;
             req.attach("image" + this.state.num, file);
-            this.setState({num:this.state.num+1});
+            this.setState({num:this.state.num+1,warningState:uploadOG});
         });
-
         req.field(userData); //Send the user info
-        req.then(function (data) { console.log(data) });
+        req.then(  (data) => { 
+            console.log(data)
+            var uploadOGDone = "😬DONEEEEEEEEEE Upload😬 "
+            this.setState({warningState:uploadOGDone});
+        }).catch(function(){
 
+            this.setState({warningState:"Error"});
+        });
+    }
+    else{
+        this.setState({
+            warningState : "😬😬😬😬😬😬😬😬😬😬Not Enough Pictures are uploaded😬😬😬😬😬😬😬😬😬😬😬😬"
+        })
+    }
     }
 
 
     render() {
         return (
-            <div className="container" style={{ color: 'white' }}>
-                <section>
-                    <div className="dropzone">
+            <div className="container" style={{ color: 'white',textAlign:'center' }}>
+               <div style={{ width:'960px', margin: '0 45%',textAlign:'center'}}>
                         <Dropzone onDrop={this.onDrop.bind(this)}>
-                            <p style={{ color: 'white' }}>Try dropping some files here, or click to select files to upload.</p>
+                            <p style={{ color: 'white'}}> 🤘Try dropping some png here 🤘, or click to select files to upload.👉🏻 👉🏻 </p>
                         </Dropzone>
-                    </div>
+                </div>
+                <section style={{ color: 'white',textAlign:'center' }}>
                     <aside style={{ color: 'white' }}>
-                        <h2>Dropped files</h2>
+                        <h2>{this.state.warningState}</h2>
+                        <h2>We recomend up to 😃 😃 😃 😃 😃 (5 face)pictures if available</h2>
                         <ul>
                             {
                                 this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
                             }
                         </ul>
+                       
                     </aside>
                 </section>
 
