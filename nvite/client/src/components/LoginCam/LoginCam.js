@@ -3,6 +3,7 @@ import Webcam from "react-webcam";
 // Material-UI imports
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+import { Redirect } from 'react-router-dom'
 
 const styles = {
   width: "auto",
@@ -31,6 +32,10 @@ class StartCam extends React.Component {
     this.webcam = webcam;
   };
 
+  signUp()
+  {
+    return <Redirect to='./signup'/>
+  }
   capture = e => {
     e.preventDefault();
     const imageSrc = this.webcam.getScreenshot();
@@ -61,6 +66,7 @@ class StartCam extends React.Component {
       height: 720,
       facingMode: "user"
     };
+
 
     return (
       <div style={styles}>
@@ -93,6 +99,9 @@ class StartCam extends React.Component {
           >
             Login With Picture
           </Button>
+          <a href="./signup" className="button" role="button">Sign Up</a>
+      
+      
           <p className="message">{this.state.message}</p>
         </form>
       </div>

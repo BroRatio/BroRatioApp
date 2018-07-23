@@ -109,7 +109,7 @@ export default class Basic extends React.Component {
                 >
                     Submit
           </Button>
-
+          <a href="./" className="button" role="button">Login Migos</a>
             </div>
         );
     }
