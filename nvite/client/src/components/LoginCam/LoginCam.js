@@ -2,7 +2,8 @@ import React from "react";
 import Webcam from "react-webcam";
 // Material-UI imports
 import Button from "@material-ui/core/Button";
-// import axios from "axios";
+import axios from "axios";
+import { Redirect } from 'react-router-dom'
 
 const styles = {
   width: "auto",
@@ -14,7 +15,7 @@ class StartCam extends React.Component {
   constructor() {
     super();
     this.state = {
-      password: "",
+      username: "",
       message: "",
       fail: ""
     };
@@ -31,11 +32,27 @@ class StartCam extends React.Component {
     this.webcam = webcam;
   };
 
+  signUp()
+  {
+    return <Redirect to='./signup'/>
+  }
   capture = e => {
     e.preventDefault();
     const imageSrc = this.webcam.getScreenshot();
+    //Post request happens to send a image and a user password, we get response indicating if
+    //the login was a success 
     this.setState({ image: imageSrc, message: "Logging in..." });
-    console.log(imageSrc, this.state.password);
+    //console.log(imageSrc, this.state.username);
+   
+    axios
+    .post("./api/userInfo/loginAuth", { imageEncoded: imageSrc, username:this.state.username })
+    .then(response => {
+      // this.setState({ results: response });
+      // console.log(this.state.results);
+      console.log(response.data)
+      localStorage.setItem('broLogin', JSON.stringify(response.data));
+      window.location.reload(); 
+      })
     setTimeout(() => {
       this.setState({
         fail: "Try logging in with your username if this fails."
@@ -49,6 +66,7 @@ class StartCam extends React.Component {
       height: 720,
       facingMode: "user"
     };
+
 
     return (
       <div style={styles}>
@@ -66,9 +84,9 @@ class StartCam extends React.Component {
         <p className="message">{this.state.fail}</p>
         <form>
           <input
-            placeholder="Password"
-            name="password"
-            value={this.state.password}
+            placeholder="UserName"
+            name="username"
+            value={this.state.username}
             onChange={this.handleInputChange}
             type="password"
           />
@@ -79,8 +97,11 @@ class StartCam extends React.Component {
             color="primary"
             onClick={this.capture}
           >
-            Capture photo
+            Login With Picture
           </Button>
+          <a href="./signup" className="button" role="button">Sign Up</a>
+      
+      
           <p className="message">{this.state.message}</p>
         </form>
       </div>

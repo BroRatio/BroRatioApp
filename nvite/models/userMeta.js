@@ -11,11 +11,6 @@ var userMetaIn = new Schema({
     img4 : { type:String} ,
     img5 : { type:String} ,
     imgHistory : {type:Array},
-    userRecord: {
-        type: Schema.Types.ObjectId,
-        ref: "userRecord"
-    }
-
 })
 
 var UserMeta = Mongoose.model("userMeta",  userMetaIn);

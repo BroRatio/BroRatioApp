@@ -66,11 +66,11 @@ class WebcamCapture extends React.Component {
     this.setState({url:"http://jewel993.com/wp-content/uploads/missing.jpg"})
   }
 
-  DisplayImage(props){
-
+ 
+  signOut(){
+    localStorage.clear();
+    window.location.reload(); 
   }
-
-  defaultImage
   render() {
     const videoConstraints = {
       width: 1280,
@@ -118,6 +118,15 @@ class WebcamCapture extends React.Component {
             <span>{this.state.ageHigh}</span>
           </p>
         </div>
+
+        <Button
+          variant="contained"
+          size="small"
+          color="primary"
+          onClick={this.signOut}
+        >
+          Sign - Out 
+        </Button>
       </div>
     );
   }
