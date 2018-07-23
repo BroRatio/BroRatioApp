@@ -7,7 +7,7 @@ var uuid = require('uuid');
 var fs = require('fs');
 
 
-function awsCompareFaces(imageIn,imageServer) {
+function awsCompareFaces(imageIn, imageServer) {
 
     var imageName = imageIn
     var image1 = fs.readFileSync(imageName);
@@ -28,41 +28,103 @@ function awsCompareFaces(imageIn,imageServer) {
     var promiseFace = requestFace.promise();
 
     var imageResult = {
-        Confidence : 0.0,
-        Similarity:0.0
-    } 
+        Confidence: 0.0,
+        Similarity: 0.0
+    }
     return promiseFace.then(
-        function (data) { 
-            imageResult.Confidence = data.SourceImageFace.Confidence;
-            imageResult.Similarity = data.FaceMatches[0].Similarity;
-            return imageResult;
-           })
+        function (data) {
+            console.log("im in the aws" + data);
+            try {
+                if (data.UnmatchedFaces.length > 0) {
+                    imageResult.Similarity = 0.0
+                    imageResult.Confidence = data.SourceImageFace.Confidence;
+                    return imageResult;
+                }
+                else if (data.FaceMatches.length > 0){
+
+                    imageResult.Confidence = data.SourceImageFace.Confidence;
+                    imageResult.Similarity =  data.FaceMatches[0].Similarity;
+                    return imageResult;
+                }
+            }catch(err){
+                console.log(err);
+                return imageResult;
+            }
+              
+            }).catch(function(err){
+                return imageResult;
+            })
 }
 
 // findAll searches the NYT API and returns only the entries we haven't already saved
 module.exports = {
-    getLoginInfoRequest: function(req, res) {
+    postLoginInfoRequest: function (req, res) {
+        let myRequest = req.body.imageEncoded;
+        const imgFix1 = myRequest.replace(/data:image\/png;base64,/gi, "")
+        let img1 = new Buffer(imgFix1, 'base64');
+        username = Math.random();
+        let imgComp1 = "./api/images/tempImage" + username + ".png"
+        console.log("wtf");
+        require('fs').writeFile(imgComp1, img1, function () {
+            console.log('FILE SAVED AS : ' + imgComp1);
 
-    let imageFile = req.files.file;
-        
-    imageFile.mv(`/api/images/${req.body.filename}.jpg`, function(err) {
-      if (err) {
-        return res.status(500).send(err);
-      }
-  
-      res.json({file: `public/${req.body.filename}.jpg`});
-    });
-    // let img1 = new Buffer(body, 'binary');
-    // file = "./api/images/uploadedMain" + username + ".png"
-    // require('fs').writeFile(file, img1, 'binary', function(err) {})
-    // // const imgFix1 = myRequest.replace(/data:image\/png;base64,/gi, "")
-    //     const imgFix1 = myRequest;
-    //     let img1 = new Buffer(imgFix1, 'base64');
-    //     username = "user-"+"random";
-    //     let imgeName = "./api/images/uploadedMain" + username + ".png"
-    //     console.log("wtf i got data here bro");
-    //     require('fs').writeFile(imgeName, img1, function () {
-    //         console.log('FILE SAVED AS : ' + imgeName);})
-    //do the db-request to get a random picture
-  }
+            //Get the username
+
+            console.log(req.body.username);
+            db.userRecord.findOne({ username: req.body.username }).then((data) => {
+                console.log(data);
+                var length = data.profileImages;
+                var nLength = Object.keys(JSON.parse(JSON.stringify(length))[0]).length;
+                // console.log(JSON.parse(JSON.stringify(length))[0]['img1'])
+                console.log(nLength)
+                var index = Math.floor(Math.random() * nLength + 1);
+                console.log(index)
+                imgComp2 = (JSON.parse(JSON.stringify(length))[0])['img' + index]
+                console.log(imgComp2);
+
+                awsCompareFaces(imgComp1, imgComp2)
+                    .then(
+                        (data) => {
+
+                            console.log("Response Login", data);
+                            if (data.Confidence > 70.0 && data.Similarity > 80.0) {
+                                var ResponseLogin = {
+                                    user: req.body.username,
+                                    loginStatus: true
+                                }
+                               res.json(ResponseLogin)
+                            }
+                            else {
+                                var ResponseLogin = {
+                                    user: req.body.username,
+                                    loginStatus: false
+                                }
+                             res.json(ResponseLogin)
+                            }
+                           
+                        }
+                    ).catch((err) => { 
+                        console.log(err) ;
+                        var ResponseLogin = {
+                            user: req.body.username,
+                            loginStatus: false
+                        }
+                        res.json(ResponseLogin);
+                    })
+            }).catch(function(err){
+                
+                    var ResponseLogin = {
+                        user: req.body.username,
+                        loginStatus: false
+                    }
+                    res.json(ResponseLogin);
+                
+            })
+         
+
+        })
+
+
+
+    }
 };

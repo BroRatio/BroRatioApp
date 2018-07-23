@@ -67,6 +67,10 @@ class WebcamCapture extends React.Component {
   }
 
  
+  signOut(){
+    localStorage.clear();
+    window.location.reload(); 
+  }
   render() {
     const videoConstraints = {
       width: 1280,
@@ -114,6 +118,15 @@ class WebcamCapture extends React.Component {
             <span>{this.state.ageHigh}</span>
           </p>
         </div>
+
+        <Button
+          variant="contained"
+          size="small"
+          color="primary"
+          onClick={this.signOut}
+        >
+          Sign - Out 
+        </Button>
       </div>
     );
   }

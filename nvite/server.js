@@ -51,43 +51,37 @@ app.post('/api/login/signAuth', (req, res, next) => {
       })
     });
 
+  
+    var imageArr = {
+      img1: typeof listOfLocations[0] != "undefined" ? listOfLocations[0] : "./api/images/def.png",
+      img2: typeof listOfLocations[1] != "undefined" ? listOfLocations[1] : "./api/images/def.png",
+      img3: typeof listOfLocations[2] != "undefined" ? listOfLocations[2] : "./api/images/def.png",
+      img4: typeof listOfLocations[3] != "undefined" ? listOfLocations[3] : "./api/images/def.png",
+      img5: typeof listOfLocations[4] != "undefined" ? listOfLocations[4] : "./api/images/def.png",
+    }
+
     var userRecordObject = {
       username: username,
-      password: password
+      password: password,
+      profileImages : imageArr
     };
-    
-    db.userRecord.create(userRecordObject).then(function (dbAdd) {
-      // View the added result in the console
-      console.log(dbAdd);
-      var imageArr = {
-        img1: typeof listOfLocations[0] != "undefined" ? listOfLocations[0] : "./api/images/def.png",
-        img2: typeof listOfLocations[1] != "undefined" ? listOfLocations[1] : "./api/images/def.png",
-        img3: typeof listOfLocations[2] != "undefined" ? listOfLocations[2] : "./api/images/def.png",
-        img4: typeof listOfLocations[3] != "undefined" ? listOfLocations[3] : "./api/images/def.png",
-        img5: typeof listOfLocations[4] != "undefined" ? listOfLocations[4] : "./api/images/def.png",
-      }
-      db.userMeta.create(imageArr)
-        .then(function (dbMatches) {
-          // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
-          // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
-          // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-          db.userRecord.findOneAndUpdate({ username: userRecordObject.username }, { userMeta: dbMatches._id }, { new: true });
-        })
-        .populate("userMeta")
-        .then(function (dbrecord) {
-          // If we were able to successfully update an Article, send it back to the client
-          return res.json(dbrecord);
-        })
-        .catch(function (err) {
-          // If an error occurred, send it to the client
-          res.json(err);
-        });
-    })
-      .catch(function (err) {
-        // If an error occurred, send it to the client
-        return res.json(err);
-      });
 
+    console.log("I reach here")
+    db.userRecord.create(userRecordObject);
+   
+    console.log("I reach here")
+    db.userMeta.create(imageArr)
+      .then(function (dbMatches) {
+        // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
+        // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
+        // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+        db.userRecord
+        .findOneAndUpdate({ username: userRecordObject.username }, { userMetas: dbMatches._id })
+        .populate("userMetas").then((data)=>{
+          console.log(data);
+          res.json(data);
+        });
+      })
   }
 })
 

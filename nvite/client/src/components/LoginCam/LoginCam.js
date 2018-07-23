@@ -2,7 +2,7 @@ import React from "react";
 import Webcam from "react-webcam";
 // Material-UI imports
 import Button from "@material-ui/core/Button";
-// import axios from "axios";
+import axios from "axios";
 
 const styles = {
   width: "auto",
@@ -37,7 +37,17 @@ class StartCam extends React.Component {
     //Post request happens to send a image and a user password, we get response indicating if
     //the login was a success 
     this.setState({ image: imageSrc, message: "Logging in..." });
-    console.log(imageSrc, this.state.username);
+    //console.log(imageSrc, this.state.username);
+   
+    axios
+    .post("./api/userInfo/loginAuth", { imageEncoded: imageSrc, username:this.state.username })
+    .then(response => {
+      // this.setState({ results: response });
+      // console.log(this.state.results);
+      console.log(response.data)
+      localStorage.setItem('broLogin', JSON.stringify(response.data));
+      window.location.reload(); 
+      })
     setTimeout(() => {
       this.setState({
         fail: "Try logging in with your username if this fails."

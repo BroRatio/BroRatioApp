@@ -53,8 +53,8 @@ export default class Basic extends React.Component {
             console.log(data)
             var uploadOGDone = "😬DONEEEEEEEEEE with the Upload/SignUP 😬 "
             this.setState({warningState:uploadOGDone});
-        }).catch(function(){
-
+        }).catch((data) => {
+            console.log(data);
             this.setState({warningState:"Error"});
         });
     }

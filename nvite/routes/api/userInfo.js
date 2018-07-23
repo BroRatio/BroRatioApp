@@ -1,13 +1,13 @@
 const router = require("express").Router();
 const userInfoController = require("../../controller/userInfoController");
+const userLoginController = require("../../controller/loginController");
 
-// Matches with "/api/imagePath"
 router.route('/analyze')
   .post(userInfoController.getPictureInfoRequest)
 
 
 router.route('/loginAuth')
-  .post(userInfoController.getPictureInfoRequest)
+  .post(userLoginController.postLoginInfoRequest)
   
 
 
