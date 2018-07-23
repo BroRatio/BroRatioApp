@@ -1,4 +1,4 @@
 module.exports = {
   userRecord: require("./userRecord"),
-  userMatches: require("./userMatches")
+  userMeta: require("./userMeta")
 };
