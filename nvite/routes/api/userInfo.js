@@ -4,7 +4,10 @@ const userInfoController = require("../../controller/userInfoController");
 // Matches with "/api/imagePath"
 router.route('/analyze')
   .post(userInfoController.getPictureInfoRequest)
- 
+
+
+router.route('/loginAuth')
+  .post(userInfoController.getPictureInfoRequest)
   
 
 

@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-app.post('/api/login/signauth', (req, res, next) => {
+app.post('/api/login/signAuth', (req, res, next) => {
   console.log("db(entry)-recieved");
   //console.log(JSON.stringify(req.body));
   var username = req.body.user;

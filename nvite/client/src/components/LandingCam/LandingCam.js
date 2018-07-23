@@ -66,11 +66,7 @@ class WebcamCapture extends React.Component {
     this.setState({url:"http://jewel993.com/wp-content/uploads/missing.jpg"})
   }
 
-  DisplayImage(props){
-
-  }
-
-  defaultImage
+ 
   render() {
     const videoConstraints = {
       width: 1280,

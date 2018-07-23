@@ -36,12 +36,12 @@ export default class Basic extends React.Component {
         this.setState({
             warningState : ""
         })
-        const req = post('/api/login/signauth');
+        const req = post('/api/login/signAuth');
         var userData = {
             user: this.state.user,
             password: this.state.password
         }
-        var uploadOG = "😬U-p-l-o-d-i-n-g😬"
+        var uploadOG = "😬 U-p-l-o-d-i-n-g 😬"
       
         this.state.files.forEach(file => {
             uploadOG = uploadOG;
@@ -49,9 +49,9 @@ export default class Basic extends React.Component {
             this.setState({num:this.state.num+1,warningState:uploadOG});
         });
         req.field(userData); //Send the user info
-        req.then(  (data) => { 
+        req.then( (data) => { 
             console.log(data)
-            var uploadOGDone = "😬DONEEEEEEEEEE Upload😬 "
+            var uploadOGDone = "😬DONEEEEEEEEEE with the Upload/SignUP 😬 "
             this.setState({warningState:uploadOGDone});
         }).catch(function(){
 
@@ -60,7 +60,7 @@ export default class Basic extends React.Component {
     }
     else{
         this.setState({
-            warningState : "😬😬😬😬😬😬😬😬😬😬Not Enough Pictures are uploaded😬😬😬😬😬😬😬😬😬😬😬😬"
+            warningState : "😬😬😬😬😬😬😬😬😬😬Not Enough Pictures are uploaded, cant sign - up 😬😬😬😬😬😬😬😬😬😬😬😬"
         })
     }
     }
