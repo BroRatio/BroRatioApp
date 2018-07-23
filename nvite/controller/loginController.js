@@ -42,13 +42,7 @@ function awsCompareFaces(imageIn,imageServer) {
 // findAll searches the NYT API and returns only the entries we haven't already saved
 module.exports = {
     getLoginInfoRequest: function(req, res) {
-    let body = req.body;
-  //  console.log(JSON.stringify(body))
-    //console.log("request"+req)
-    // console.log(req)
-    // username = "testImage"
-    // console.log(body)
-    // console.log(req);
+
     let imageFile = req.files.file;
         
     imageFile.mv(`/api/images/${req.body.filename}.jpg`, function(err) {

@@ -13,11 +13,11 @@ var userMetaIn = new Schema({
     imgHistory : {type:Array},
     userRecord: {
         type: Schema.Types.ObjectId,
-        ref: "UserRecord"
+        ref: "userRecord"
     }
 
 })
 
-var UserMeta = Mongoose.model("UserMeta",  userMetaIn);
+var UserMeta = Mongoose.model("userMeta",  userMetaIn);
 
 module.exports =  UserMeta;
