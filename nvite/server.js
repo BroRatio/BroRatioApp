@@ -10,15 +10,15 @@ const busboy = require('connect-busboy');
 const db = require("./models");
 
 //https
-var key = fs.readFileSync('./selfsigned.key');
-var cert = fs.readFileSync( './selfsigned.crt' );
+// var key = fs.readFileSync('./selfsigned.key');
+// var cert = fs.readFileSync( './selfsigned.crt' );
 //var ca = fs.readFileSync( './mydomain.csr' );
 
 //
-var options = {
-  key: key,
-  cert: cert
-  };
+// var options = {
+//   key: key,
+//   cert: cert
+//   };
 
 var https = require('https');
 
@@ -124,9 +124,9 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-// // Start the API server
-// app.listen(PORT, () =>
-//   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
-// );
+// Start the API server
+app.listen(PORT, () =>
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
+);
 
-https.createServer(options, app).listen(443);
+// https.createServer(options, app).listen(443);
