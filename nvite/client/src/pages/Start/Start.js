@@ -8,11 +8,10 @@ export default class Start extends Component {
   render() {
     return (
       <div>
+        <SimpleModal />
         <h1 className="nvite">Welcome to Nvite...</h1>
-
         <LoginCam />
         <br />
-        <SimpleModal />
       </div>
     );
   }

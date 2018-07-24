@@ -10,8 +10,8 @@ import {
   Menu,
   MenuItem
 } from "@material-ui/core";
-// import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+
 const styles = {
   root: {
     flexGrow: 1
@@ -43,6 +43,11 @@ class MenuAppBar extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  signOut() {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   render() {
     const { classes } = this.props;
     const { auth, anchorEl } = this.state;
@@ -50,27 +55,8 @@ class MenuAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        {/* <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={auth}
-                onChange={this.handleChange}
-                aria-label="LoginSwitch"
-              />
-            }
-            label={auth ? "Logout" : "Login"}
-          />
-        </FormGroup> */}
         <AppBar position="static">
           <Toolbar>
-            {/* <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <MenuIcon />
-            </IconButton> */}
             <Typography
               style={{ margin: "auto" }}
               variant="display1"
@@ -104,6 +90,7 @@ class MenuAppBar extends React.Component {
                 >
                   <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                   <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={this.signOut}>Logout</MenuItem>
                 </Menu>
               </div>
             )}
