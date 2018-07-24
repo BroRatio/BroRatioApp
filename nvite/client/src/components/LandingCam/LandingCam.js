@@ -59,7 +59,7 @@ class WebcamCapture extends React.Component {
   };
   componentDidMount() {
     this.setState({
-      url: "http://jewel993.com/wp-content/uploads/missing.jpg"
+      url: "./images/noimage.jpg"
     });
   }
   render() {
@@ -97,7 +97,12 @@ class WebcamCapture extends React.Component {
             style={{ height: "337px", width: "600px", display: "inline-block" }}
           >
             <img
-              style={{ overflow: "hidden", width: "100%", height: "100%" }}
+              style={{
+                overflow: "hidden",
+                width: "100%",
+                height: "100%",
+                borderRadius: "30px"
+              }}
               src={this.state.url + "?" + new Date().getTime()}
               alt="No Results!"
             />
