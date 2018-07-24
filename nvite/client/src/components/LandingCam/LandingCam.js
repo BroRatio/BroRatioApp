@@ -59,8 +59,7 @@ class WebcamCapture extends React.Component {
   };
   componentDidMount() {
     this.setState({
-      url:
-        "http://www.dreams.metroeve.com/wp-content/uploads/2017/10/www.dreams.metroeve.com-missing-dreams-meaning.jpg"
+      url: "./images/noimage.jpg"
     });
   }
   render() {
