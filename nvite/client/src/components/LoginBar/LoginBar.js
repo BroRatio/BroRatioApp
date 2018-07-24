@@ -10,8 +10,8 @@ import {
   Menu,
   MenuItem
 } from "@material-ui/core";
-// import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+
 const styles = {
   root: {
     flexGrow: 1
@@ -55,27 +55,8 @@ class MenuAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        {/* <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={auth}
-                onChange={this.handleChange}
-                aria-label="LoginSwitch"
-              />
-            }
-            label={auth ? "Logout" : "Login"}
-          />
-        </FormGroup> */}
         <AppBar position="static">
           <Toolbar>
-            {/* <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <MenuIcon />
-            </IconButton> */}
             <Typography
               style={{ margin: "auto" }}
               variant="display1"

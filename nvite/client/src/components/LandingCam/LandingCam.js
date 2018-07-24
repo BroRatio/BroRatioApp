@@ -29,8 +29,6 @@ class WebcamCapture extends React.Component {
     axios
       .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
       .then(response => {
-        // this.setState({ results: response });
-        // console.log(this.state.results);
         console.log(response.data.malesObject[0].Emotions);
         this.setState({
           disable: false,
@@ -39,7 +37,6 @@ class WebcamCapture extends React.Component {
           message: "Analysis complete! Take another photo..."
         });
         if (response.data.malesObject.length > 0) {
-          // for (let i in response.data.malesObject.length)
           try {
             this.setState({
               ageLow: response.data.malesObject[0].AgeRange.Low,
@@ -96,12 +93,15 @@ class WebcamCapture extends React.Component {
         </Button>
         <div className="container">
           <p className="message">{this.state.message}</p>
-          <img
-            style={{ height: "337px", width: "600px" }}
-            src={this.state.url + "?" + new Date().getTime()}
-            alt="No Results!"
-          />
-
+          <div
+            style={{ height: "337px", width: "600px", display: "inline-block" }}
+          >
+            <img
+              style={{ overflow: "hidden", width: "100%", height: "100%" }}
+              src={this.state.url + "?" + new Date().getTime()}
+              alt="No Results!"
+            />
+          </div>
           <p className="score">
             <span>Male: {this.state.male}</span>
             <span>|</span>

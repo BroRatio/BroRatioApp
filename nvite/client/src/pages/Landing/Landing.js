@@ -3,11 +3,9 @@ import React from "react";
 import LandingCam from "../../components/LandingCam/LandingCam";
 import LoginBar from "../../components/LoginBar/LoginBar";
 
-// Paper Style
 const styles = {
   textAlign: "center",
   margin: "auto"
-  // marginTop: "5em"
 };
 
 class Landing extends React.Component {

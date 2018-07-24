@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import Score from './components/Score/Score'
 import "./App.css";
+// Page Imports
 import Landing from "./pages/Landing/Landing";
 import Uploader from "./pages/Uploader/dropzone";
 import Start from "./pages/Start/Start";
