@@ -100,14 +100,11 @@ class WebcamCapture extends React.Component {
           Capture photo
         </Button>
         <div className="container">
-          <p className="message">
-            {this.state.message}
-
-            <img
-              src={this.state.url + "?" + new Date().getTime()}
-              alt="No Results!"
-            />
-          </p>
+          <p className="message">{this.state.message}</p>
+          <img
+            src={this.state.url + "?" + new Date().getTime()}
+            alt="No Results!"
+          />
 
           <p className="score">
             <span>Male: {this.state.male}</span>
