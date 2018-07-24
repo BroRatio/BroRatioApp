@@ -1,28 +1,20 @@
 import React from "react";
-
-// Material-UI Imports
-
-import { Paper } from "@material-ui/core";
-
 // Component imports
 import LandingCam from "../../components/LandingCam/LandingCam";
+import LoginBar from "../../components/LoginBar/LoginBar";
 
-// Paper Style
 const styles = {
-  height: 430,
-  width: 620,
   textAlign: "center",
-  borderRadius: "100px",
   margin: "auto"
-  // marginTop: "5em"
 };
 
 class Landing extends React.Component {
   render() {
     return (
-      <Paper style={styles}>
+      <div style={styles}>
+        <LoginBar />
         <LandingCam>For the Camera</LandingCam>
-      </Paper>
+      </div>
     );
   }
 }

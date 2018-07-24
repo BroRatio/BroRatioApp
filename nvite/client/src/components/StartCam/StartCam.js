@@ -2,7 +2,6 @@ import React from "react";
 import Webcam from "react-webcam";
 // Material-UI imports
 import Button from "@material-ui/core/Button";
-// import axios from "axios";
 
 //Extended
 class StartCam extends React.Component {
