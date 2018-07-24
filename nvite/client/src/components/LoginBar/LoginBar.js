@@ -43,6 +43,11 @@ class MenuAppBar extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  signOut() {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   render() {
     const { classes } = this.props;
     const { auth, anchorEl } = this.state;
@@ -104,6 +109,7 @@ class MenuAppBar extends React.Component {
                 >
                   <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                   <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={this.signOut}>Logout</MenuItem>
                 </Menu>
               </div>
             )}

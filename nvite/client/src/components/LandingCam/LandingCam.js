@@ -65,11 +65,6 @@ class WebcamCapture extends React.Component {
       url: "http://jewel993.com/wp-content/uploads/missing.jpg"
     });
   }
-
-  signOut() {
-    localStorage.clear();
-    window.location.reload();
-  }
   render() {
     const videoConstraints = {
       width: 1280,
@@ -102,6 +97,7 @@ class WebcamCapture extends React.Component {
         <div className="container">
           <p className="message">{this.state.message}</p>
           <img
+            style={{ height: "337px", width: "600px" }}
             src={this.state.url + "?" + new Date().getTime()}
             alt="No Results!"
           />
@@ -118,15 +114,6 @@ class WebcamCapture extends React.Component {
             <span>{this.state.ageHigh}</span>
           </p>
         </div>
-
-        <Button
-          variant="contained"
-          size="small"
-          color="primary"
-          onClick={this.signOut}
-        >
-          Sign - Out
-        </Button>
       </div>
     );
   }
