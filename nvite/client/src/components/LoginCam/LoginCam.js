@@ -17,8 +17,7 @@ class StartCam extends React.Component {
     super();
     this.state = {
       username: "",
-      message: "",
-      fail: ""
+      message: ""
     };
   }
 
@@ -54,13 +53,14 @@ class StartCam extends React.Component {
         // console.log(this.state.results);
         console.log(response.data);
         localStorage.setItem("broLogin", JSON.stringify(response.data));
-        window.location.reload();
+        if (response.data.loginStatus === false) {
+          this.setState({
+            message: "Login fail. Try logging in with your username."
+          });
+        } else {
+          window.location.reload();
+        }
       });
-    setTimeout(() => {
-      this.setState({
-        fail: "Try logging in with your username if this fails."
-      });
-    }, 9999);
   };
 
   render() {
