@@ -126,8 +126,13 @@ class StartCam extends React.Component {
         <p className="message">{this.state.message}</p>
         <br />
         <div style={{ display: "inline-block" }}>
-          <Button variant="contained" href="./signup">
-            <Typography variant="title">Sign Up</Typography>
+          <Button
+            color="secondary"
+            size="large"
+            variant="contained"
+            href="./signup"
+          >
+            Sign Up
           </Button>
           <SimpleModal />
         </div>

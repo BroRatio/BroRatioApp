@@ -51,13 +51,13 @@ class SimpleModal extends React.Component {
     return (
       <Fragment>
         <Button
+          color="secondary"
           style={{ marginLeft: "8px" }}
           onClick={this.handleOpen}
           variant="contained"
+          size="large"
         >
-          <Typography variant="title" id="modal-title">
-            Login
-          </Typography>
+          Login
         </Button>
         <Modal
           aria-labelledby="simple-modal-title"
