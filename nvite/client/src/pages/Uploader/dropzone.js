@@ -1,13 +1,7 @@
 import Dropzone from "react-dropzone";
 import React from "react";
 import { post } from "superagent";
-import {
-  Paper,
-  Input,
-  InputAdornment,
-  Button,
-  Typography
-} from "@material-ui/core";
+import { Paper, Input, InputAdornment, Button } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Visibility from "@material-ui/icons/Visibility";
 
