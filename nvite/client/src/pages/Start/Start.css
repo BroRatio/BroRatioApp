@@ -23,7 +23,7 @@
   color: #fff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: 10s BeProud linear infinite, 3s Always ease alternate infinite;
+  animation: 10s BeProud linear infinite;
 }
 
 @keyframes BeProud {
@@ -32,8 +32,8 @@
   }
 }
 
-@keyframes Always {
+/* @keyframes Always {
   100% {
     transform: scale(1.1);
   }
-}
+} */
