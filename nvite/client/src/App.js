@@ -12,8 +12,8 @@ import Start from "./pages/Start/Start";
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: orange[500] },
-    secondary: { main: deepOrange[500] }
+    primary: { main: deepOrange[500] },
+    secondary: { main: orange[500] }
   }
 });
 
