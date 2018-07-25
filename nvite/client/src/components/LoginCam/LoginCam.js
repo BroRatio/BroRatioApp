@@ -1,7 +1,8 @@
 import React from "react";
 import Webcam from "react-webcam";
 // Material-UI imports
-import Button from "@material-ui/core/Button";
+import { InputAdornment, Paper, Input, Button } from "@material-ui/core";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
@@ -83,25 +84,38 @@ class StartCam extends React.Component {
         />
         <br />
         <p className="message">{this.state.fail}</p>
+
         <form>
-          <input
-            placeholder="UserName"
-            name="username"
-            value={this.state.username}
-            onChange={this.handleInputChange}
-            type="password"
-          />
+          <Paper style={{ width: "250px", height: "auto", margin: "auto" }}>
+            <Input
+              style={{ marginBottom: "5px" }}
+              placeholder="Username"
+              name="username"
+              value={this.state.username}
+              onChange={this.handleInputChange}
+              type="password"
+              startAdornment={
+                <InputAdornment
+                  position="start"
+                  style={{ marginRight: "15px" }}
+                >
+                  <AccountCircle />
+                </InputAdornment>
+              }
+            />
+          </Paper>
           <Button
             type="submit"
             variant="contained"
             size="small"
             color="primary"
             onClick={this.capture}
+            style={{ margin: "5px 0 5px 0" }}
           >
             Login With Picture
           </Button>
-          <p className="message">{this.state.message}</p>
         </form>
+        <p className="message">{this.state.message}</p>
         <br />
         <Button variant="contained" href="./signup">
           Sign Up
