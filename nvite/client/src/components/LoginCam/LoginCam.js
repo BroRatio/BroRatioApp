@@ -1,13 +1,7 @@
 import React from "react";
 import Webcam from "react-webcam";
 // Material-UI imports
-import {
-  InputAdornment,
-  Paper,
-  Input,
-  Button,
-  Typography
-} from "@material-ui/core";
+import { InputAdornment, Paper, Input, Button } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
