@@ -1,10 +1,18 @@
 import React from "react";
 import Webcam from "react-webcam";
 // Material-UI imports
-import { InputAdornment, Paper, Input, Button } from "@material-ui/core";
+import {
+  InputAdornment,
+  Paper,
+  Input,
+  Button,
+  Typography
+} from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+// Component imports
+import SimpleModal from "../SimpleModal/SimpleModal";
 
 const styles = {
   width: "auto",
@@ -117,9 +125,12 @@ class StartCam extends React.Component {
         </form>
         <p className="message">{this.state.message}</p>
         <br />
-        <Button variant="contained" href="./signup">
-          Sign Up
-        </Button>
+        <div style={{ display: "inline-block" }}>
+          <Button variant="contained" href="./signup">
+            <Typography variant="title">Sign Up</Typography>
+          </Button>
+          <SimpleModal />
+        </div>
       </div>
     );
   }
