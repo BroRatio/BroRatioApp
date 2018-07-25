@@ -1,7 +1,13 @@
 import Dropzone from "react-dropzone";
 import React from "react";
 import { post } from "superagent";
-import { Paper, Input, InputAdornment, Button } from "@material-ui/core";
+import {
+  Paper,
+  Input,
+  InputAdornment,
+  Button,
+  Typography
+} from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Visibility from "@material-ui/icons/Visibility";
 
@@ -132,11 +138,11 @@ export default class Basic extends React.Component {
           color="primary"
           onClick={this.onUploadClick.bind(this)}
         >
-          Submit
+          <Typography variant="title">Sign Up</Typography>
         </Button>
         <br />
         <Button variant="contained" href="./" style={{ marginTop: "10px" }}>
-          Login Migos
+          <Typography variant="title">Return to Login</Typography>
         </Button>
       </div>
     );
