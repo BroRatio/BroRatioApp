@@ -119,6 +119,7 @@ export default class Basic extends React.Component {
           <br />
           <Input
             style={{ marginBottom: "5px" }}
+            color="secondary"
             placeholder="Password"
             name="password"
             value={this.state.password}
@@ -134,15 +135,20 @@ export default class Basic extends React.Component {
         <br />
         <Button
           variant="contained"
-          size="small"
+          size="large"
           color="primary"
           onClick={this.onUploadClick.bind(this)}
         >
-          <Typography variant="title">Sign Up</Typography>
+          Sign Up
         </Button>
         <br />
-        <Button variant="contained" href="./" style={{ marginTop: "10px" }}>
-          <Typography variant="title">Return to Login</Typography>
+        <Button
+          color="secondary"
+          variant="contained"
+          href="./"
+          style={{ marginTop: "10px" }}
+        >
+          Return to Login
         </Button>
       </div>
     );

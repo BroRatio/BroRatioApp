@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 // Material-UI imports
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import { deepOrange, orange } from "@material-ui/core/colors";
+import { deepOrange, indigo } from "@material-ui/core/colors";
 // Page Imports
 import Landing from "./pages/Landing/Landing";
 import Uploader from "./pages/Uploader/dropzone";
@@ -13,7 +13,7 @@ import Start from "./pages/Start/Start";
 const theme = createMuiTheme({
   palette: {
     primary: { main: deepOrange[500] },
-    secondary: { main: orange[500] }
+    secondary: { main: indigo[400] }
   }
 });
 
