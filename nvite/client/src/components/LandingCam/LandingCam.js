@@ -24,7 +24,15 @@ class WebcamCapture extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
-    this.setState({ message: "Analyzing photo...", disable: true });
+    this.setState({
+      message: "Analyzing photo...",
+      disable: true,
+      male: 0,
+      female: 0,
+      mood: null,
+      ageLow: 0,
+      ageHigh: 0
+    });
     setTimeout(() => {
       this.setState({
         disable: false,

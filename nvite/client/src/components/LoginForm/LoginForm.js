@@ -75,11 +75,8 @@ export default class Login extends Component {
           <br />
           <Button
             variant="contained"
-            size="small"
-            color="primary"
             type="submit"
             onClick={this.handleFormSubmit}
-            style={{ marginTop: "1em" }}
           >
             Submit
           </Button>

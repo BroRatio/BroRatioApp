@@ -85,7 +85,7 @@ export default class Basic extends React.Component {
         <section style={{ color: "white", textAlign: "center" }}>
           <aside style={{ color: "white" }}>
             <h2>{this.state.warningState}</h2>
-            <h2>
+            <h2 className="mood">
               We recommend up to 😃 😃 😃 😃 😃 (5 face)pictures if available
             </h2>
             <ul style={{ listStyle: "none" }}>
@@ -113,6 +113,7 @@ export default class Basic extends React.Component {
           <br />
           <Input
             style={{ marginBottom: "5px" }}
+            color="secondary"
             placeholder="Password"
             name="password"
             value={this.state.password}
@@ -128,15 +129,20 @@ export default class Basic extends React.Component {
         <br />
         <Button
           variant="contained"
-          size="small"
+          size="large"
           color="primary"
           onClick={this.onUploadClick.bind(this)}
         >
-          Submit
+          Sign Up
         </Button>
         <br />
-        <Button variant="contained" href="./" style={{ marginTop: "10px" }}>
-          Login Migos
+        <Button
+          color="secondary"
+          variant="contained"
+          href="./"
+          style={{ marginTop: "10px" }}
+        >
+          Return to Login
         </Button>
       </div>
     );

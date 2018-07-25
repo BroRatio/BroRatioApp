@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 // Material-UI
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -49,11 +49,15 @@ class SimpleModal extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div style={{ textAlign: "right" }}>
-        <Button onClick={this.handleOpen} variant="contained">
-          <Typography variant="title" id="modal-title">
-            Login
-          </Typography>
+      <Fragment>
+        <Button
+          color="secondary"
+          style={{ marginLeft: "8px" }}
+          onClick={this.handleOpen}
+          variant="contained"
+          size="large"
+        >
+          Login
         </Button>
         <Modal
           aria-labelledby="simple-modal-title"
@@ -70,7 +74,7 @@ class SimpleModal extends React.Component {
             </Typography>
           </div>
         </Modal>
-      </div>
+      </Fragment>
     );
   }
 }
