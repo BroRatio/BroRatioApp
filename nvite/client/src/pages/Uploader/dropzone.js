@@ -1,7 +1,9 @@
 import Dropzone from "react-dropzone";
 import React from "react";
 import { post } from "superagent";
-import Button from "@material-ui/core/Button";
+import { Paper, Input, InputAdornment, Button } from "@material-ui/core";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Visibility from "@material-ui/icons/Visibility";
 
 export default class Basic extends React.Component {
   constructor() {
@@ -95,21 +97,35 @@ export default class Basic extends React.Component {
             </ul>
           </aside>
         </section>
-
-        <input
-          placeholder="Username"
-          name="user"
-          value={this.state.user}
-          onChange={this.handleInputChange}
-          type="text"
-        />
-        <input
-          placeholder="Password"
-          name="password"
-          value={this.state.password}
-          onChange={this.handleInputChange}
-          type="password"
-        />
+        <Paper style={{ width: "250px", margin: "auto" }}>
+          <Input
+            placeholder="Username"
+            name="user"
+            value={this.state.user}
+            onChange={this.handleInputChange}
+            type="text"
+            startAdornment={
+              <InputAdornment position="start">
+                <AccountCircle />
+              </InputAdornment>
+            }
+          />
+          <br />
+          <Input
+            style={{ marginBottom: "5px" }}
+            placeholder="Password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleInputChange}
+            type="password"
+            startAdornment={
+              <InputAdornment position="start">
+                <Visibility />
+              </InputAdornment>
+            }
+          />
+        </Paper>
+        <br />
         <Button
           variant="contained"
           size="small"

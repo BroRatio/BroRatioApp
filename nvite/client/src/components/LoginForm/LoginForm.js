@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
+import { Input, InputAdornment, Button } from "@material-ui/core";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Visibility from "@material-ui/icons/Visibility";
 
 const styles = {
   width: "auto"
@@ -46,26 +48,38 @@ export default class Login extends Component {
     return (
       <div style={styles}>
         <form>
-          <input
+          <Input
             placeholder="Username"
             name="user"
             value={this.state.user}
             onChange={this.handleInputChange}
             type="text"
+            startAdornment={
+              <InputAdornment position="start">
+                <AccountCircle />
+              </InputAdornment>
+            }
           />
-          <input
+          <Input
             placeholder="Password"
             name="password"
             value={this.state.password}
             onChange={this.handleInputChange}
             type="password"
+            startAdornment={
+              <InputAdornment position="start">
+                <Visibility />
+              </InputAdornment>
+            }
           />
+          <br />
           <Button
             variant="contained"
             size="small"
             color="primary"
             type="submit"
             onClick={this.handleFormSubmit}
+            style={{ marginTop: "1em" }}
           >
             Submit
           </Button>

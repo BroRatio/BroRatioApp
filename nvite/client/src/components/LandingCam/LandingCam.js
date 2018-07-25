@@ -25,6 +25,12 @@ class WebcamCapture extends React.Component {
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
     this.setState({ message: "Analyzing photo...", disable: true });
+    setTimeout(() => {
+      this.setState({
+        disable: false,
+        message: "Take another photo!"
+      });
+    }, 9999);
     // console.log(imageSrc);
     axios
       .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
