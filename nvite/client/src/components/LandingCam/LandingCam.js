@@ -29,19 +29,25 @@ class WebcamCapture extends React.Component {
     axios
       .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
       .then(response => {
-        console.log(response.data.malesObject[0].Emotions);
         this.setState({
           disable: false,
-          male: response.data.maleCount,
-          female: response.data.femaleCount,
+          male: response.data.maleCount ? response.data.maleCount: 0,
+          female: response.data.femaleCount ? response.data.femaleCount:0,
           message: "Analysis complete! Take another photo..."
         });
-        if (response.data.malesObject.length > 0) {
+
+        
+        if (response.data.malesObject.length > 0 || response.data.femaleObject.length > 0 ) {
           try {
             this.setState({
-              ageLow: response.data.malesObject[0].AgeRange.Low,
-              ageHigh: response.data.malesObject[0].AgeRange.High,
-              mood: response.data.malesObject[0].Emotions[0].Type,
+              ageLow: " Males "+(response.data.malesObject[0].AgeRange.Low ? response.data.malesObject[0].AgeRange.Low:"Not Detected")
+                      +" Females "+(response.data.femalesObject[0].AgeRange.Low ? response.data.femalesObject[0].AgeRange.Low:"Not Detected"),
+              ageHigh: " Male " + (response.data.malesObject[0].AgeRange.High ? response.data.malesObject[0].AgeRange.High:"Not Detected")
+                      +" Female " + (response.data.femalesObject[0].AgeRange.High ? response.data.femalesObject[0].AgeRange.High:"Not Detected")
+              
+              ,
+              mood: " Males "+(response.data.malesObject[0].Emotions[0].Type ? response.data.malesObject[0].Emotions[0].Type:"Not Detected")
+                    +" Females",
               url: "/images/imageMainuser-random.png?" + Date.toString()
             });
             var c = document.getElementById("canvas");
