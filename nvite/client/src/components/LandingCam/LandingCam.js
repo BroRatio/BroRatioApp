@@ -24,7 +24,15 @@ class WebcamCapture extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
-    this.setState({ message: "Analyzing photo...", disable: true });
+    this.setState({
+      message: "Analyzing photo...",
+      disable: true,
+      male: 0,
+      female: 0,
+      mood: null,
+      ageLow: 0,
+      ageHigh: 0
+    });
     setTimeout(() => {
       this.setState({
         disable: false,
@@ -35,7 +43,7 @@ class WebcamCapture extends React.Component {
     axios
       .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
       .then(response => {
-        console.log(response.data.malesObject[0].Emotions);
+        console.log(response.data);
         this.setState({
           disable: false,
           male: response.data.maleCount,

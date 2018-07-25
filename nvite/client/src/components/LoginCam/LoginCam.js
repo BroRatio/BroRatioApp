@@ -1,10 +1,18 @@
 import React from "react";
 import Webcam from "react-webcam";
 // Material-UI imports
-import { InputAdornment, Paper, Input, Button } from "@material-ui/core";
+import {
+  InputAdornment,
+  Paper,
+  Input,
+  Button,
+  Typography
+} from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+// Component imports
+import SimpleModal from "../SimpleModal/SimpleModal";
 
 const styles = {
   width: "auto",
@@ -17,8 +25,7 @@ class StartCam extends React.Component {
     super();
     this.state = {
       username: "",
-      message: "",
-      fail: ""
+      message: ""
     };
   }
 
@@ -54,13 +61,14 @@ class StartCam extends React.Component {
         // console.log(this.state.results);
         console.log(response.data);
         localStorage.setItem("broLogin", JSON.stringify(response.data));
-        window.location.reload();
+        if (response.data.loginStatus === false) {
+          this.setState({
+            message: "Login fail. Try logging in with your username."
+          });
+        } else {
+          window.location.reload();
+        }
       });
-    setTimeout(() => {
-      this.setState({
-        fail: "Try logging in with your username if this fails."
-      });
-    }, 9999);
   };
 
   render() {
@@ -117,9 +125,12 @@ class StartCam extends React.Component {
         </form>
         <p className="message">{this.state.message}</p>
         <br />
-        <Button variant="contained" href="./signup">
-          Sign Up
-        </Button>
+        <div style={{ display: "inline-block" }}>
+          <Button variant="contained" href="./signup">
+            <Typography variant="title">Sign Up</Typography>
+          </Button>
+          <SimpleModal />
+        </div>
       </div>
     );
   }
