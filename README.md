@@ -10,7 +10,7 @@
  #### ** Ages
 
 #### "Main Page"
-![Screenshot](https://imgur.com/a/N3IjO7U)
+![Screenshot](https://i.imgur.com/iCneHAn.jpg)
 
 # Full Concept: 
 #### Dating app based on pictures and associated based on what people chose to share at different locations, hoping to mock this after
