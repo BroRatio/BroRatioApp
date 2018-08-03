@@ -1,29 +1,29 @@
 const tileData = [
   {
-    img: "../../../../api/images/1chatsman.png",
-    title: "Breakfast",
-    author: "jill111",
+    img: "/images/1chatsman.png",
+    title: "Picture #1",
+    author: "Chatty",
     cols: 3
   },
   {
-    img: "/static/images/grid-list/burgers.jpg",
-    title: "Tasty burger",
-    author: "director90"
+    img: "/images/2chatsman.png",
+    title: "Picture #2",
+    author: "Chatty"
   },
   {
-    img: "/static/images/grid-list/camera.jpg",
-    title: "Camera",
-    author: "Danson67"
+    img: "/images/3chatsman.png",
+    title: "Picture #3",
+    author: "Chatty"
   },
   {
-    img: "/static/images/grid-list/morning.jpg",
-    title: "Morning",
-    author: "fancycrave1"
+    img: "/images/4chatsman.png",
+    title: "Picture #4",
+    author: "Chatty"
   },
   {
-    img: "/static/images/grid-list/hats.jpg",
-    title: "Hats",
-    author: "Hans"
+    img: "/images/5chatsman.png",
+    title: "Picture #5",
+    author: "Chatty"
   }
 ];
 

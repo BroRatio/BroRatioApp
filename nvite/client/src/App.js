@@ -38,7 +38,7 @@ const App = () => {
                 }
 
                 if (item === true) return <Redirect to="/landing" />;
-                else return <Start />;
+                else return <Profile />;
               }}
             />
             <Route
