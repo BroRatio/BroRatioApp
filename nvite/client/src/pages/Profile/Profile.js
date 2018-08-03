@@ -1,84 +1,75 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 // Material-UI Imports
 import {
   GridList,
   GridListTile,
   IconButton,
-  Button,
-  Dialog
+  GridListTileBar,
+  ListSubheader
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import InfoIcon from "@material-ui/icons/Info";
 // Components Imports
 import LoginBar from "../../components/LoginBar/LoginBar";
+import tileData from "./tileData";
 
-class Results extends Component {
-  state = {
-    open: false,
-    currentImg: ""
-  };
+/**
+ * The example data is structured as follows:
+ *
+ * import image from 'path/to/image.jpg';
+ * [etc...]
+ *
+ * const tileData = [
+ *   {
+ *     img: image,
+ *     title: 'Image',
+ *     author: 'author',
+ *   },
+ *   {
+ *     [etc...]
+ *   },
+ * ];
+ */
 
-  handleOpen = img => {
-    this.setState({ open: true, currentImg: img });
-  };
+const styles = theme => ({
+  gridList: {
+    width: 500,
+    height: 450
+  },
+  icon: {
+    color: "rgba(255, 255, 255, 0.54)"
+  }
+});
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+function TitlebarGridList(props) {
+  const { classes } = props;
 
-  render() {
-    <LoginBar />;
-    let imageListContent;
-    const { images } = this.props;
-    if (images) {
-      imageListContent = (
-        <GridList cols={3}>
-          {images.map(img => (
-            <GridListTile
-              title={img.tags}
-              style={{ boxShadow: "0 6px 10px grey, 0 6px 10px grey" }}
-              key={img.id}
-              subtitle={
-                <span>
-                  by <strong>{img.user}</strong>
-                </span>
-              }
+  return (
+    <Fragment>
+      <LoginBar />
+      <GridList cellHeight={180} className={classes.gridList}>
+        {tileData.map(tile => (
+          <GridListTile key={tile.img}>
+            <img src={tile.img} alt={tile.title} />
+            <GridListTileBar
+              title={tile.title}
+              subtitle={<span>by: {tile.author}</span>}
               actionIcon={
-                <IconButton onClick={() => this.handleOpen(img.largeImageURL)}>
-                  <InfoIcon color="white" />
+                <IconButton className={classes.icon}>
+                  <InfoIcon />
                 </IconButton>
               }
-            >
-              <img src={img.largeImageURL} alt="No Result" />
-            </GridListTile>
-          ))}
-        </GridList>
-      );
-    } else {
-      imageListContent = null;
-    }
-
-    const actions = [
-      <Button label="Close" primary={true} onClick={this.handleClose} />
-    ];
-    return (
-      <div>
-        {imageListContent}
-        <Dialog
-          actions={actions}
-          modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-        >
-          <img src={this.state.currentImg} alt="" style={{ width: "100%" }} />
-        </Dialog>
-      </div>
-    );
-  }
+            />
+          </GridListTile>
+        ))}
+      </GridList>
+    </Fragment>
+  );
 }
 
-Results.propTypes = {
-  images: PropTypes.array.isRequired
+TitlebarGridList.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
-export default Results;
+export default withStyles(styles)(TitlebarGridList);
