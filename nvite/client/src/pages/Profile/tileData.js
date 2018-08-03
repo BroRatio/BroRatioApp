@@ -1,6 +1,6 @@
 const tileData = [
   {
-    img: "../../../api/images/1chatsman.png",
+    img: "../../../../api/images/1chatsman.png",
     title: "Breakfast",
     author: "jill111",
     cols: 3
