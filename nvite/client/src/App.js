@@ -38,7 +38,7 @@ const App = () => {
                 }
 
                 if (item === true) return <Redirect to="/landing" />;
-                else return <Profile />;
+                else return <Start />;
               }}
             />
             <Route
@@ -55,6 +55,22 @@ const App = () => {
 
                 if (item === false) return <Redirect to="/" />;
                 else return <Landing />;
+              }}
+            />
+            <Route
+              exact
+              path="/profile"
+              render={props => {
+                let item;
+                if (localStorage.getItem("broLogin") == null) {
+                  item = false;
+                } else {
+                  item = JSON.parse(localStorage.getItem("broLogin"))
+                    .loginStatus;
+                }
+
+                if (item === false) return <Redirect to="/" />;
+                else return <Profile />;
               }}
             />
             <Route
