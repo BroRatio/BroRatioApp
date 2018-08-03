@@ -33,10 +33,6 @@ import tileData from "./tileData";
  */
 
 const styles = theme => ({
-  gridList: {
-    width: 500,
-    height: 450
-  },
   icon: {
     color: "rgba(255, 255, 255, 0.54)"
   }
@@ -48,7 +44,7 @@ function TitlebarGridList(props) {
   return (
     <Fragment>
       <LoginBar />
-      <GridList cellHeight={180} className={classes.gridList}>
+      <GridList col={3} cellHeight={400}>
         {tileData.map(tile => (
           <GridListTile key={tile.img}>
             <img src={tile.img} alt={tile.title} />
