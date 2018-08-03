@@ -9,6 +9,7 @@ import { deepOrange, indigo } from "@material-ui/core/colors";
 import Landing from "./pages/Landing/Landing";
 import Uploader from "./pages/Uploader/dropzone";
 import Start from "./pages/Start/Start";
+import Profile from "./pages/Profile/Profile";
 
 const theme = createMuiTheme({
   palette: {
