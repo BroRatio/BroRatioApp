@@ -16,7 +16,8 @@
 #### Dating app based on pictures and associated based on what people chose to share at different locations, hoping to mock this after
 
 # Technologies
-#### Node, React, Mongo, Express
+#### Node, Mongo, Express
+* [React](https://reactjs.org/) is a JavaScript library for building user interfaces.
 * [Material-UI](https://material-ui.com/) is an open-source project that features React components that implement Google's Material Design.
 
 # Hosting DB and Server
