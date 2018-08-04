@@ -49,7 +49,7 @@ class MenuAppBar extends React.Component {
   }
 
   imagePage() {
-    window.location.replace("/profile");
+    window.location.replace("/images");
   }
 
   cameraPage() {
