@@ -48,7 +48,7 @@ class MenuAppBar extends React.Component {
     window.location.reload();
   }
 
-  profilePage() {
+  imagePage() {
     window.location.replace("/profile");
   }
 
@@ -96,7 +96,7 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.profilePage}>Profile</MenuItem>
+                  <MenuItem onClick={this.imagePage}>Images</MenuItem>
                   <MenuItem onClick={this.cameraPage}>Camera</MenuItem>
                   <MenuItem onClick={this.signOut}>Logout</MenuItem>
                 </Menu>

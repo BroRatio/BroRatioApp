@@ -10,8 +10,7 @@ import {
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import InfoIcon from "@material-ui/icons/Info";
-// Components Imports
-import LoginBar from "../../components/LoginBar/LoginBar";
+// Image Imports
 import tileData from "./tileData";
 
 /**
@@ -43,7 +42,6 @@ function TitlebarGridList(props) {
 
   return (
     <Fragment>
-      <LoginBar />
       <GridList col={3} cellHeight={400}>
         {tileData.map(tile => (
           <GridListTile key={tile.img}>
@@ -51,11 +49,6 @@ function TitlebarGridList(props) {
             <GridListTileBar
               title={tile.title}
               subtitle={<span>by: {tile.author}</span>}
-              actionIcon={
-                <IconButton className={classes.icon}>
-                  <InfoIcon />
-                </IconButton>
-              }
             />
           </GridListTile>
         ))}

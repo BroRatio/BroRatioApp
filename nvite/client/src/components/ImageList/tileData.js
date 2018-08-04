@@ -24,6 +24,12 @@ const tileData = [
     img: "/images/5chatsman.png",
     title: "Picture #5",
     author: "Chatty"
+  },
+  {
+    img:
+      "http://www.girlsformarriage.org/wp-content/uploads/2015/04/beauty-of-romanian-girl.jpg",
+    title: "Match #1",
+    author: "Swifty"
   }
 ];
 
