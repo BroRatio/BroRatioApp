@@ -69,7 +69,7 @@ function TitlebarGridList(props) {
 
     for(var index = 0 ; index < 5 ; index++){
      tileData[index].img = "/images/"+(index+1)+JSON.parse(localStorage.getItem("broLogin")).user+".png";
-     
+     tileData[index].author = JSON.parse(localStorage.getItem("broLogin")).user
     }
     return (
       <Fragment>
