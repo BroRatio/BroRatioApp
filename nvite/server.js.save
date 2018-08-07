@@ -11,15 +11,14 @@ const db = require("./models");
 const fs = require('fs');
 
 //https
-var key = fs.readFileSync('./nodeface.com.key');
-var cert = fs.readFileSync( './nodeface_com.crt' );
-var ca = fs.readFileSync( './nodeface.com.csr' );
+var key = fs.readFileSync('');
+var cert = fs.readFileSync( './selfsigned.crt' );
+//var ca = fs.readFileSync( './mydomain.csr' );
 
 //
 var options = {
   key: key,
-  cert: cert,
-  ca: ca
+  cert: cert
   };
 
 var https = require('https');
