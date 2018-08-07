@@ -29,9 +29,12 @@ class WebcamCapture extends React.Component {
       disable: true,
       male: 0,
       female: 0,
-      mood: null,
-      ageLow: 0,
-      ageHigh: 0
+      fmood: null,
+      mmood: null,
+      mageLow: 0,
+      mageHigh: 0,
+      fageLow: 0,
+      fageHigh: 0
     });
     setTimeout(() => {
       this.setState({
@@ -51,7 +54,7 @@ class WebcamCapture extends React.Component {
         });
 
         if(response.data.maleCount > 0 ||response.data.femaleCount > 0 )
-        if (response.data.malesObject.length > 0 || response.data.femaleObject.length > 0 ) {
+        if (response.data.malesObject.length > 0 || response.data.femalesObject.length > 0 ) {
           try {
             //Get the male info
             var malesAgeLow = "Not Detected"
@@ -63,7 +66,7 @@ class WebcamCapture extends React.Component {
             var femalesAgeHigh = "Not Detected"
             var femalesMood = "Not Detected"
           
-            //
+     
             var maleDetect = response.data.malesObject.length > 0 ? true: false;
             var femaleDetect = response.data.femalesObject.length > 0 ? true: false;
 
@@ -72,37 +75,43 @@ class WebcamCapture extends React.Component {
               malesAgeLow = "";
               malesAgeHigh = "";
               malesMood = "";
-              var counter = 0;
+              var counter = 1;
               response.data.malesObject.forEach(element=>{
-                malesAgeLow += element.AgeRange.Low + " ";
-                malesAgeHigh += element.AgeRange.High + " ";
-                malesMood += JSON.stringify(element.Emotions) + " ";
+               
+                malesAgeLow += "Male["+counter+"] Low"+element.AgeRange.Low + " ";
+                malesAgeHigh += "Male["+counter+"] High"+ element.AgeRange.High + " ";
+                malesMood += "*****Male["+counter+"] "+ JSON.stringify(element.Emotions) +"******";
+                counter = counter+1;
               })        
             }
 
-
+            var femaleArray;
             if(femaleDetect)
             {
+              femaleArray = [];
+              
               femalesAgeLow = "";
               femalesAgeHigh = "";
               femalesMood = "";
+              console.log(response.data.femalesObject);
+              var counter = 1;
               response.data.femalesObject.forEach(element=>{
-                femalesAgeLow += element.AgeRange.Low + " ";
-                femalesAgeHigh += element.AgeRange.High + " ";
-                femalesMood += JSON.stringify(element.Emotions) + " ";
+                
+                femalesAgeLow += "FMale["+counter+"] Low"+element.AgeRange.Low + " ";
+                femalesAgeHigh += "FMale["+counter+"] High"+element.AgeRange.High + " ";
+                femalesMood += "*******FMale["+counter+"] "+ JSON.stringify(element.Emotions)+"******";
+                counter = counter+1;
               })
             }
 
 
             this.setState({
-              ageLow: " Males " +  malesAgeLow   
-                      +" Females " + femalesAgeHigh  ,
-              ageHigh: " Male " + malesAgeHigh 
-                      +" Female " +  femalesAgeHigh 
-              
-              ,
-              mood: " Males "+ malesMood 
-                    +" Females " +femalesMood ,
+              mageLow:  malesAgeLow ,
+              fageLow: femalesAgeLow  ,
+              mageHigh:  malesAgeHigh ,
+              fageHigh: femalesAgeHigh ,
+              mmood:  malesMood ,
+              fmood: femalesMood ,
               url: "/images/imageMainuser-random.png?" + Date.toString()
             });
             var c = document.getElementById("canvas");
@@ -169,17 +178,36 @@ class WebcamCapture extends React.Component {
             />
           </div>
           <p className="score">
+          {
+            (this.state.male>0)?(
             <span>Male: {this.state.male}</span>
-            <span>|</span>
-            <span>Female: {this.state.female}</span>
+            ):( <span></span>)}
+            {
+            (this.state.female>0)?( 
+            <span>Female: {this.state.female}</span>):( <span></span>)}
+          
           </p>
           <br></br>
-          <p className="mood">Mood: {this.state.mood}</p><br></br><br></br>
+          { (this.state.male>0)?( 
+          <div>
+          <p className="mood">Male - Mood: {this.state.mmood}</p><br></br><br></br>
           <p className="age">
-            <span>Age Range: {this.state.ageLow}</span>
+            <span>Male Age Range: {this.state.mageLow}</span>
             <span> - </span>
-            <span>{this.state.ageHigh}</span>
+            <span>{this.state.mageHigh}</span>
           </p>
+          </div>):(<p></p>)
+          }
+          {(this.state.female>0)?( 
+          <div>
+          <p className="mood">Female - Mood: {this.state.fmood}</p><br></br><br></br>
+          <p className="age">
+            <span>Female Age Range: {this.state.fageLow}</span>
+            <span> - </span>
+            <span>{this.state.fageHigh}</span>
+          </p>
+          </div>):(<p></p>)
+          }
         </div>
       </div>
     );

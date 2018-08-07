@@ -45,7 +45,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-
 app.post('/api/login/signAuth', (req, res, next) => {
   console.log("db(entry)-recieved");
   //console.log(JSON.stringify(req.body));
@@ -130,4 +129,4 @@ app.get("*", (req, res) => {
 //   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
 // );
 
-https.createServer(options, app).listen(6969);
+https.createServer(options, app).listen(443);
