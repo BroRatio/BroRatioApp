@@ -41,20 +41,20 @@ function awsCompareFaces(imageIn, imageServer) {
                     imageResult.Confidence = data.SourceImageFace.Confidence;
                     return imageResult;
                 }
-                else if (data.FaceMatches.length > 0){
+                else if (data.FaceMatches.length > 0) {
 
                     imageResult.Confidence = data.SourceImageFace.Confidence;
-                    imageResult.Similarity =  data.FaceMatches[0].Similarity;
+                    imageResult.Similarity = data.FaceMatches[0].Similarity;
                     return imageResult;
                 }
-            }catch(err){
+            } catch (err) {
                 console.log(err);
                 return imageResult;
             }
-              
-            }).catch(function(err){
-                return err;
-            })
+
+        }).catch(function (err) {
+            return err;
+        })
 }
 
 // findAll searches the NYT API and returns only the entries we haven't already saved
@@ -68,8 +68,6 @@ module.exports = {
         console.log("wtf");
         require('fs').writeFile(imgComp1, img1, function () {
             console.log('FILE SAVED AS : ' + imgComp1);
-
-            //Get the username
 
             console.log(req.body.username);
             db.userRecord.findOne({ username: req.body.username }).then((data) => {
@@ -93,39 +91,59 @@ module.exports = {
                                     user: req.body.username,
                                     loginStatus: true
                                 }
-                               res.json(ResponseLogin)
+                                res.json(ResponseLogin)
                             }
                             else {
                                 var ResponseLogin = {
                                     user: req.body.username,
                                     loginStatus: false
                                 }
-                             res.json(ResponseLogin)
+                                res.json(ResponseLogin)
                             }
-                           
+
                         }
-                    ).catch((err) => { 
-                        console.log("error"+err) ;
+                    ).catch((err) => {
+                        console.log("error" + err);
                         var ResponseLogin = {
                             user: req.body.username,
                             loginStatus: false
                         }
                         res.json(ResponseLogin);
                     })
-            }).catch(function(err){
-                
-                    var ResponseLogin = {
-                        user: req.body.username,
-                        loginStatus: false
-                    }
-                    res.json(ResponseLogin);
-                
+            }).catch(function (err) {
+
+                var ResponseLogin = {
+                    user: req.body.username,
+                    loginStatus: false
+                }
+                res.json(ResponseLogin);
+
             })
-         
-
         })
-
-
-
+    }
+    ,
+    postUserPassRequest: function (req, res) {
+        db.userRecord.findOne({ username: req.body.username, password: req.body.password }).then((data) => {
+            console.log(data);
+            if(data != null){
+            var ResponseLogin = {
+                user: req.body.username,
+                loginStatus: true
+            }
+            res.json(ResponseLogin)}
+            else{
+                var ResponseLogin = {
+                    user: req.body.username,
+                    loginStatus: false
+                }
+                res.json(ResponseLogin)
+            }
+        }).catch(function (err) {
+            var ResponseLogin = {
+                user: req.body.username,
+                loginStatus: false
+            }
+            res.json(ResponseLogin)
+        })
     }
 };

@@ -8,7 +8,10 @@ router.route('/analyze')
 
 router.route('/loginAuth')
   .post(userLoginController.postLoginInfoRequest)
-  
+
+
+router.route('/loginUserPass')
+  .post(userLoginController.postUserPassRequest)
 
 
 module.exports = router;
