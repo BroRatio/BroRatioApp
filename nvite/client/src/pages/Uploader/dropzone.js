@@ -85,15 +85,16 @@ export default class Basic extends React.Component {
         <h1 className="nvite">Welcome to Nvite...</h1>
         <div style={{ width: "100%",textAlign: "center" }}>
           <Dropzone accept="image/jpeg, image/png" onDrop={this.onDrop.bind(this)} disablePreview={false} multiple={true}
-          style={{position: "relative", width: "100%", height: "300px", borderWidth: "2px", borderColor: "rgb(102, 102, 102)", borderStyle: "dashed", borderRadius: "5px"}}
+          style={{position: "relative", textAlign: "center" , width: "70%", height: "70%", borderWidth: "10px",margin:"0 auto",borderColor: "white", borderStyle: "dashed", borderRadius: "5px"}}
           >
-            <p style={{ color: "white" }}>         
-            <img src="https://png.icons8.com/metro/1600/dropbox.png" width="30%" height="200px" textAlign="center"/>        ￼
-            </p>
-           <p> 🤘Try dropping some png or jpeg here 🤘, or click to select files to upload.👉🏻 👉🏻  
-           
+            <p style={{ color: "white" , backgroundColor:"#11ece2c4" }}>         
+            <img src="https://png.icons8.com/metro/1600/dropbox.png" width="30%" height="200px" textAlign="center"/>
+            <p style={{ color: "white" , backgroundColor:"black" }} > 
+                      🤘Try dropping some png or jpeg here 🤘, or click to select files to upload.👉🏻 👉🏻  
            </p>
-          
+                  ￼
+            </p>
+       
 
           </Dropzone>
         </div>

@@ -5,6 +5,23 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import "./Camera.css";
 
+// 
+class MoodRow extends React.Component {
+  render() {
+    const mood = this.props.mood;
+    const percentage = this.props.percentage;
+    return (
+      <tr>
+        <td>{mood}</td>
+        <td>{percentage}</td>
+      </tr>
+
+    );
+  }
+}
+
+
+
 //Extended
 class WebcamCapture extends React.Component {
   state = {
@@ -15,11 +32,129 @@ class WebcamCapture extends React.Component {
     message: null,
     ageLow: "",
     ageHigh: "",
-    url: ""
+    url: "",
+    maleObject: [],
+    femaleObject: []
   };
 
   setRef = webcam => {
     this.webcam = webcam;
+  };
+
+  moodTranslater = moodText => {
+    var returnemoji = "😈"
+    switch (moodText) {
+      case "HAPPY":
+        returnemoji = "😆 " + moodText
+        break;
+
+      case "SAD":
+        returnemoji = "😔 " + moodText
+        break;
+
+      case "ANGRY":
+        returnemoji = "😤 " + moodText
+        break;
+
+      case "CONFUSED":
+        returnemoji = "🤔 "+ moodText
+        break;
+
+      case "DISGUSTED":
+        returnemoji = "🤢 "+ moodText
+        break;
+
+      case "SURPRISED":
+        returnemoji = "😜 "+ moodText
+        break;
+
+      case "CALM":
+        returnemoji = "😏 "+ moodText
+        break;
+
+      case "UNKNOWN":
+        returnemoji = "👽"
+        break;
+
+    }
+    return returnemoji;
+  }
+
+
+  maleCountGraph = () => {
+    // var MCount = this.state.maleCount;
+    // var objects =  this.state.maleObject;
+    var maleEmoji1 = "👨‍💼";
+    var maleEmoCounter = "";
+    var manVar = this.state.male == 1 ? "Man" : "Men";
+
+    for (var i = 0; i < this.state.male; i++) {
+      maleEmoCounter = maleEmoCounter + maleEmoji1;
+    }
+    const rowsMain = [];
+    var maleCount = 1;
+    this.state.maleObject.forEach(element => {
+      const rows = [];
+      element.Emotions.forEach(element1 => {
+        rows.push(<MoodRow mood={this.moodTranslater(element1.Type)} percentage={Math.floor(element1.Confidence) + "%"} />)
+      })
+      rowsMain.push(<div><p>{manVar}[{maleCount}] = Age (Low {element.AgeRange.Low} - Hi {element.AgeRange.High})</p> {rows}</div>)
+      maleCount++;
+    })
+    //console.log("Male DEBUG",this.state.maleObject)
+
+    return (
+      <div>
+        <p>
+          <li>{this.state.male} {manVar} {maleEmoCounter}</li>
+        </p>
+        <table style={{ textAlign: "center", margin: "2% auto" }}>
+          {rowsMain}
+        </table>
+
+      </div>
+    )
+  };
+
+
+
+  femaleCountGraph = () => {
+
+    var femaleEmoji1 = "👩‍💼";
+    var femaleEmoCounter = "";
+    var womanVar = this.state.female == 1 ? "Woman" : "Women";
+
+    for (var i = 0; i < this.state.female; i++) {
+      femaleEmoCounter = femaleEmoCounter + femaleEmoji1;
+    }
+    console.log(this.state.femaleObject)
+    const rowsMain = [];
+    var femaleCount = 1;
+    this.state.femaleObject.forEach(element => {
+      const rows = [];
+      element.Emotions.forEach(element1 => {
+        rows.push(<MoodRow mood={this.moodTranslater(element1.Type)} percentage={Math.floor(element1.Confidence) + "%"} />)
+      })
+
+
+      rowsMain.push(<div><p>{womanVar}[{femaleCount}]Age (Low {element.AgeRange.Low} - Hi </p> {element.AgeRange.High}) {rows}</div>)
+      femaleCount++;
+    })
+    //console.log("Male DEBUG",this.state.maleObject)
+
+    return (
+      <div>
+        <p>
+          {
+            <li>{this.state.female} {womanVar} {femaleEmoCounter}</li>
+          }
+        </p>
+        <table style={{ textAlign: "center", margin: "2% auto" }}>
+          {rowsMain}
+        </table>
+
+      </div>
+    )
   };
 
   capture = () => {
@@ -46,11 +181,14 @@ class WebcamCapture extends React.Component {
     axios
       .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
       .then(response => {
+        console.log(response.data)
         this.setState({
           disable: false,
           male: response.data.maleCount ? response.data.maleCount : 0,
           female: response.data.femaleCount ? response.data.femaleCount : 0,
-          message: "Analysis complete! Take another photo..."
+          message: "Analysis complete! Take another photo...",
+          femaleObject: response.data.femalesObject ? response.data.femalesObject : [],
+          maleObject: response.data.malesObject ? response.data.malesObject : []
         });
 
         if (response.data.maleCount > 0 || response.data.femaleCount > 0)
@@ -164,7 +302,7 @@ class WebcamCapture extends React.Component {
         <div className="container">
           <p className="message">{this.state.message}</p>
           <div
-            style={{ height: "337px", width: "600px", display: "inline-block" }}
+            style={{ height: "70%", width: "70%", display: "inline-block" }}
           >
             <img
               style={{
@@ -177,38 +315,25 @@ class WebcamCapture extends React.Component {
               alt="No Results!"
             />
           </div>
-          <p className="score">
+
+          <div className="score">
             {
               (this.state.male > 0) ? (
-                <span>Male: {this.state.male}</span>
-              ) : (<span></span>)}
+                <span>
+                  <div>{this.maleCountGraph()}</div>
+                </span>
+
+              ) : (<span></span>)
+            }
             {
               (this.state.female > 0) ? (
-                <span>Female: {this.state.female}</span>) : (<span></span>)}
+                <span>
+                  <div>{this.femaleCountGraph()}</div>
+                </span>
+              ) : (<span></span>)
+            }
 
-          </p>
-          <br></br>
-          {(this.state.male > 0) ? (
-       
-            <div>
-              <p className="mood">Male - Mood: {this.state.mmood}</p><br></br><br></br>
-              <p className="age">
-                <span>Male Age Range: {this.state.mageLow}</span>
-                <span> - </span>
-                <span>{this.state.mageHigh}</span>
-              </p>
-            </div>) : (<p></p>)
-          }
-          {(this.state.female > 0) ? (
-            <div>
-              <p className="mood">Female - Mood: {this.state.fmood}</p><br></br><br></br>
-              <p className="age">
-                <span>Female Age Range: {this.state.fageLow}</span>
-                <span> - </span>
-                <span>{this.state.fageHigh}</span>
-              </p>
-            </div>) : (<p></p>)
-          }
+          </div>
         </div>
       </div>
     );
