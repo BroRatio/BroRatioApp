@@ -27,7 +27,7 @@ const tileData = [
   },
   {
     img:
-      "http://www.girlsformarriage.org/wp-content/uploads/2015/04/beauty-of-romanian-girl.jpg",
+      "https://www.writeups.org/wp-content/uploads/Rick-Sanchez-Rick-and-Morty.jpg",
     title: "Match #1",
     author: "Swifty"
   }

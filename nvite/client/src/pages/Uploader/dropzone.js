@@ -15,12 +15,22 @@ export default class Basic extends React.Component {
       num: 1,
       warningState: ""
     };
+
   }
 
+
+
   onDrop(files) {
-    this.setState({
-      files
-    });
+    var tmp =[]
+    tmp = this.state.files.slice() //immutability biiitch
+    
+    files.forEach( (elemet) => {
+      tmp.push(elemet)
+    })
+  
+    this.setState(
+      {files:tmp}
+     );
   }
 
   handleInputChange = e => {
@@ -56,7 +66,7 @@ export default class Basic extends React.Component {
         })
         .catch(data => {
           console.log(data);
-          this.setState({ warningState: "Error" });
+          this.setState({ warningState: "Error Something Went wrong check Console" });
         });
     } else {
       this.setState({
@@ -73,13 +83,18 @@ export default class Basic extends React.Component {
         style={{ color: "white", textAlign: "center" }}
       >
         <h1 className="nvite">Welcome to Nvite...</h1>
-        <div style={{ width: "960px", margin: "0 45%", textAlign: "center" }}>
-          <Dropzone onDrop={this.onDrop.bind(this)}>
-            <p style={{ color: "white" }}>
-              {" "}
-              🤘Try dropping some png here 🤘, or click to select files to
-              upload.👉🏻 👉🏻{" "}
+        <div style={{ width: "100%",textAlign: "center" }}>
+          <Dropzone accept="image/jpeg, image/png" onDrop={this.onDrop.bind(this)} disablePreview={false} multiple={true}
+          style={{position: "relative", width: "100%", height: "300px", borderWidth: "2px", borderColor: "rgb(102, 102, 102)", borderStyle: "dashed", borderRadius: "5px"}}
+          >
+            <p style={{ color: "white" }}>         
+            <img src="https://png.icons8.com/metro/1600/dropbox.png" width="30%" height="200px" textAlign="center"/>        ￼
             </p>
+           <p> 🤘Try dropping some png or jpeg here 🤘, or click to select files to upload.👉🏻 👉🏻  
+           
+           </p>
+          
+
           </Dropzone>
         </div>
         <section style={{ color: "white", textAlign: "center" }}>

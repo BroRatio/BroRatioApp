@@ -11,15 +11,19 @@ const db = require("./models");
 const fs = require('fs');
 
 //https
-var key = fs.readFileSync('./nodeface.com.key');
-var cert = fs.readFileSync( './nodeface_com.crt' );
-var ca = fs.readFileSync( './nodeface.com.csr' );
+// var key = fs.readFileSync('./nodeface.com.key');
+// var cert = fs.readFileSync( './nodeface_com.crt' );
+// var ca = fs.readFileSync( './nodeface.com.csr' );
 
+
+var key = fs.readFileSync('./selfsigned.key');
+var cert = fs.readFileSync( './selfsigned.crt' );
+//var ca = fs.readFileSync( './mydomain.csr' );
 //
 var options = {
   key: key,
   cert: cert,
-  ca: ca
+  //ca: ca
   };
 
 var https = require('https');
@@ -130,4 +134,6 @@ app.get("*", (req, res) => {
 //   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
 // );
 
-https.createServer(options, app).listen(443);
+//https.createServer(options, app).listen(443);
+
+https.createServer(options, app).listen(6969);
