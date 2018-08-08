@@ -84,7 +84,7 @@ class WebcamCapture extends React.Component {
   maleCountGraph = () => {
     // var MCount = this.state.maleCount;
     // var objects =  this.state.maleObject;
-    var maleEmoji1 = "👨‍💼";
+    var maleEmoji1 = " 👨‍ ";
     var maleEmoCounter = "";
     var manVar = this.state.male == 1 ? "Man" : "Men";
 
@@ -98,7 +98,7 @@ class WebcamCapture extends React.Component {
       element.Emotions.forEach(element1 => {
         rows.push(<MoodRow mood={this.moodTranslater(element1.Type)} percentage={Math.floor(element1.Confidence) + "%"} />)
       })
-      rowsMain.push(<div><p>{manVar}[{maleCount}] = Age (Low {element.AgeRange.Low} - Hi {element.AgeRange.High})</p> {rows}</div>)
+    rowsMain.push(<div><p>{manVar}[{maleCount}] = Age ({element.AgeRange.Low}-{element.AgeRange.High})</p> {rows}</div>)
       maleCount++;
     })
     //console.log("Male DEBUG",this.state.maleObject)
@@ -120,7 +120,7 @@ class WebcamCapture extends React.Component {
 
   femaleCountGraph = () => {
 
-    var femaleEmoji1 = "👩‍💼";
+    var femaleEmoji1 = " 👩 ";
     var femaleEmoCounter = "";
     var womanVar = this.state.female == 1 ? "Woman" : "Women";
 
@@ -137,7 +137,7 @@ class WebcamCapture extends React.Component {
       })
 
 
-      rowsMain.push(<div><p>{womanVar}[{femaleCount}] = Age (Low {element.AgeRange.Low} - Hi {element.AgeRange.High}) </p> {element.AgeRange.High}) {rows}</div>)
+      rowsMain.push(<div><p>{womanVar}[{femaleCount}] = Age ({element.AgeRange.Low}- {element.AgeRange.High}) </p> {rows}</div>)
       femaleCount++;
     })
     //console.log("Male DEBUG",this.state.maleObject)
