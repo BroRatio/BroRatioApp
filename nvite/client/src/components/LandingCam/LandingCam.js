@@ -137,7 +137,7 @@ class WebcamCapture extends React.Component {
       })
 
 
-      rowsMain.push(<div><p>{womanVar}[{femaleCount}]Age (Low {element.AgeRange.Low} - Hi </p> {element.AgeRange.High}) {rows}</div>)
+      rowsMain.push(<div><p>{womanVar}[{femaleCount}] = Age (Low {element.AgeRange.Low} - Hi {element.AgeRange.High}) </p> {element.AgeRange.High}) {rows}</div>)
       femaleCount++;
     })
     //console.log("Male DEBUG",this.state.maleObject)
