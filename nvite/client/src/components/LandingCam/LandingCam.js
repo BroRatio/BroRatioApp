@@ -4,6 +4,7 @@ import Webcam from "react-webcam";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import "./Camera.css";
+import { image } from "../../../node_modules/superagent/lib/node/parsers";
 
 // 
 class MoodRow extends React.Component {
@@ -61,7 +62,7 @@ class WebcamCapture extends React.Component {
         break;
 
       case "DISGUSTED":
-        returnemoji = "🤢 "+ moodText
+        returnemoji = "😩 "+ moodText
         break;
 
       case "SURPRISED":
@@ -178,8 +179,9 @@ class WebcamCapture extends React.Component {
       });
     }, 9999);
     // console.log(imageSrc);
+     var curUser = JSON.parse(localStorage.getItem("broLogin")).user;
     axios
-      .post("./api/userInfo/analyze", { imageEncoded: imageSrc })
+      .post("./api/userInfo/analyze", { imageEncoded: imageSrc , username:curUser})
       .then(response => {
         console.log(response.data)
         this.setState({
@@ -248,7 +250,7 @@ class WebcamCapture extends React.Component {
                 fageHigh: femalesAgeHigh,
                 mmood: malesMood,
                 fmood: femalesMood,
-                url: "/images/imageMainuser-random.png?" + Date.toString()
+                url: "/images/imageMainuser-"+curUser+".png?" + Date.toString()
               });
               var c = document.getElementById("canvas");
               var ctx = c.getContext("2d");
@@ -316,10 +318,10 @@ class WebcamCapture extends React.Component {
             />
           </div>
 
-          <div className="score">
+          <div className="score" style={{ border: "1px solid red", backgroundImage:'url("/images/WoodBack.jpg")',opacity:".90"}}>
             {
               (this.state.male > 0) ? (
-                <span>
+                <span >
                   <div>{this.maleCountGraph()}</div>
                 </span>
 

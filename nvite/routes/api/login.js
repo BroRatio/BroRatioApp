@@ -6,9 +6,6 @@ router.route("/auth")
   .post(userLoginController.postLoginInfoRequest);
 
 
-
-
-
 router
   .route("/:id")
 //.get(imgController.findById)
