@@ -122,7 +122,7 @@ module.exports = {
         let myRequest = req.body.imageEncoded;
         const imgFix1 = myRequest.replace(/data:image\/png;base64,/gi, "")
         let img1 = new Buffer(imgFix1, 'base64');
-        username = "user-"+"random";
+        let username = "user-"+req.body.username;
         let imgeName = "./api/images/imageMain" + username + ".png"
         console.log("wtf");
         require('fs').writeFile(imgeName, img1, function () {
