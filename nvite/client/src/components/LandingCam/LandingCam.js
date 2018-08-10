@@ -318,7 +318,7 @@ class WebcamCapture extends React.Component {
             />
           </div>
 
-          <div className="score" style={{ border: "1px solid red", backgroundImage:'url("/images/WoodBack.jpg")',opacity:".90"}}>
+          <div className="score" style={{ border: "1px solid red", backgroundImage:'url("/images/WoodBack.jpg")',opacity:".92"}}>
             {
               (this.state.male > 0) ? (
                 <span >
