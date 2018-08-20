@@ -9,27 +9,8 @@ import {
   ListSubheader
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import InfoIcon from "@material-ui/icons/Info";
 // Image Imports
 import tileData from "./tileData";
-
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
 
 const styles = theme => ({
   icon: {
@@ -38,14 +19,12 @@ const styles = theme => ({
 });
 
 function TitlebarGridList(props) {
-
   const { classes } = props;
-  var item;
+  let item;
   if (localStorage.getItem("broLogin") == null) {
     item = false;
   } else {
-    item = JSON.parse(localStorage.getItem("broLogin"))
-      .loginStatus;
+    item = JSON.parse(localStorage.getItem("broLogin")).loginStatus;
   }
 
   if (item == false) {
@@ -64,12 +43,16 @@ function TitlebarGridList(props) {
         </GridList>
       </Fragment>
     );
-  }
-  else {
-
-    for(var index = 0 ; index < 5 ; index++){
-     tileData[index].img = "/images/"+(index+1)+JSON.parse(localStorage.getItem("broLogin")).user+".png";
-     tileData[index].author = JSON.parse(localStorage.getItem("broLogin")).user
+  } else {
+    for (let index = 0; index < 5; index++) {
+      tileData[index].img =
+        "/images/" +
+        (index + 1) +
+        JSON.parse(localStorage.getItem("broLogin")).user +
+        ".png";
+      tileData[index].author = JSON.parse(
+        localStorage.getItem("broLogin")
+      ).user;
     }
     return (
       <Fragment>
@@ -88,7 +71,6 @@ function TitlebarGridList(props) {
     );
   }
 }
-
 
 TitlebarGridList.propTypes = {
   classes: PropTypes.object.isRequired
