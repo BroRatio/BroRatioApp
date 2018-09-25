@@ -10,6 +10,7 @@ import Landing from "./pages/Landing/Landing";
 import Uploader from "./pages/Uploader/dropzone";
 import Start from "./pages/Start/Start";
 import ImagePage from "./pages/ImagePage/ImagePage";
+import Axios from "../node_modules/axios";
 
 const theme = createMuiTheme({
   palette: {
@@ -17,6 +18,20 @@ const theme = createMuiTheme({
     secondary: { main: indigo[400] }
   }
 });
+
+function doRequest() {
+  var currentUser = localStorage.getItem("broLogin")
+
+  if (currentUser != null) {
+    Axios
+      .post("./api/userInfo/isValidUser", {
+        username: this.state.user,
+        password: this.state.password
+      }).then((resdata) => {
+        return console.log(resdata.d)
+      })
+  }
+}
 
 const App = () => {
   return (
@@ -46,11 +61,14 @@ const App = () => {
               path="/landing"
               render={props => {
                 let item;
+
                 if (localStorage.getItem("broLogin") == null) {
                   item = false;
                 } else {
                   item = JSON.parse(localStorage.getItem("broLogin"))
                     .loginStatus;
+
+
                 }
 
                 if (item === false) return <Redirect to="/" />;

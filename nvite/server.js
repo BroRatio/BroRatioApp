@@ -70,7 +70,7 @@ app.post('/api/login/signAuth', (req, res, next) => {
       })
     });
 
-  
+    //Todo Fix this make it more dynamic
     var imageArr = {
       img1: typeof listOfLocations[0] != "undefined" ? listOfLocations[0] : "./api/images/def.png",
       img2: typeof listOfLocations[1] != "undefined" ? listOfLocations[1] : "./api/images/def.png",
@@ -85,10 +85,10 @@ app.post('/api/login/signAuth', (req, res, next) => {
       profileImages : imageArr
     };
 
-    console.log("I reach here")
+    
     db.userRecord.create(userRecordObject,{unique: true});
    
-    console.log("I reach here")
+    
     db.userMeta.create(imageArr)
       .then(function (dbMatches) {
         // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note

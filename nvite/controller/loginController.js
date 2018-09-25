@@ -57,7 +57,9 @@ function awsCompareFaces(imageIn, imageServer) {
         })
 }
 
-// findAll searches the NYT API and returns only the entries we haven't already saved
+var arrayOfValidKeys = [];
+
+
 module.exports = {
     postLoginInfoRequest: function (req, res) {
         let myRequest = req.body.imageEncoded;
@@ -85,12 +87,18 @@ module.exports = {
                     .then(
                         (data) => {
 
+                            var today = new Date();
+                            var Uniqustr = today.toGMTString();
+
                             console.log("Response Login", data);
                             if (data.Confidence > 70.0 && data.Similarity > 80.0) {
                                 var ResponseLogin = {
                                     user: req.body.username,
-                                    loginStatus: true
+                                    loginStatus: true,
+                                    uni: Uniqustr
                                 }
+
+                                arrayOfValidKeys.push(Uniqustr);
                                 res.json(ResponseLogin)
                             }
                             else {
@@ -114,7 +122,8 @@ module.exports = {
 
                 var ResponseLogin = {
                     user: req.body.username,
-                    loginStatus: false
+                    loginStatus: false,
+
                 }
                 res.json(ResponseLogin);
 
@@ -125,13 +134,17 @@ module.exports = {
     postUserPassRequest: function (req, res) {
         db.userRecord.findOne({ username: req.body.username, password: req.body.password }).then((data) => {
             console.log(data);
-            if(data != null){
-            var ResponseLogin = {
-                user: req.body.username,
-                loginStatus: true
+            var today = new Date();
+            var Uniqustr = today.toGMTString();
+            if (data != null) {
+                var ResponseLogin = {
+                    user: req.body.username,
+                    loginStatus: true,
+                    uni : Uniqustr
+                }
+                res.jso(ResponseLogin)
             }
-            res.json(ResponseLogin)}
-            else{
+            else {
                 var ResponseLogin = {
                     user: req.body.username,
                     loginStatus: false
@@ -145,5 +158,18 @@ module.exports = {
             }
             res.json(ResponseLogin)
         })
+    },
+    isTokenValid: function (req, res){
+        
+        var validToken = false;
+        btoa
+        var parseRes = req.body.uni.split('')
+        if(arrayOfValidKeys.find( i=> i == req.body.uni) == "validToken"){
+            validToken = true;
+        }  
+        else{
+            validToken = false;
+        }
+        return validToken;
     }
 };
