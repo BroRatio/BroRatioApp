@@ -60,7 +60,7 @@ function awsCompareFaces(imageIn, imageServer) {
 var dictOfValidKeys = {};
 
 var getUniHash = () => {
-    var today = new Date();
+    var today = new Date(); 
     var Uniqustr = Buffer.from(today.toGMTString().split(" ").reverse().join(" ")).toString('base64')
     return Uniqustr
 }
@@ -164,13 +164,14 @@ module.exports = {
         })
     },   
     isTokenValid: function (req, res){     
-        console.log("I recieved a request here †oken") 
+    
         var validToken = { integrity : false, newHash :"" }
-        console.log("I recieved a request here for ")
+        console.log("I recieved a request here for ---v ")
         console.log(req.body.username, req.body.uni)
         console.log("Dictionary is -->",JSON.stringify(dictOfValidKeys),dictOfValidKeys[req.body.username] )
         console.log("Validity --->",dictOfValidKeys[req.body.username] === req.body.uni)
-        if(dictOfValidKeys[req.body.username] == req.body.uni)
+
+        if(dictOfValidKeys[req.body.username] === req.body.uni)
         {
            validToken.integrity = true;
            validToken.newHash = getUniHash()

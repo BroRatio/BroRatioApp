@@ -26,6 +26,7 @@ class MoodRow extends React.Component {
 
 //Extended
 class WebcamCapture extends React.Component {
+ 
   state = {
     disable: false,
     male: 0,
@@ -42,6 +43,7 @@ class WebcamCapture extends React.Component {
   setRef = webcam => {
     this.webcam = webcam;
   };
+
   moodTranslater = moodText => {
     var returnemoji = "😈"
     switch (moodText) {
@@ -80,6 +82,7 @@ class WebcamCapture extends React.Component {
     }
     return returnemoji;
   }
+
   maleCountGraph = () => {
     var maleEmoji1 = " 👨‍ ";
     var maleEmoCounter = "";
@@ -150,6 +153,7 @@ class WebcamCapture extends React.Component {
       </div>
     )
   };
+
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
     this.setState({
@@ -284,9 +288,7 @@ class WebcamCapture extends React.Component {
                 }
               };
 
-
-              imageObj.src = "http://localhost:3000/api/images/imageMainuser-bigboss.png";
-
+              imageObj.src = "./api/images/imageMainuser-"+curUser+".png";
             } catch (err) {
               console.log(err);
             }

@@ -116,7 +116,6 @@ function getPictureInfo(imageName) {
     );
 }
 
-// Defining methods for the articleController
 module.exports = {
     getPictureInfoRequest: function (req, res) {
         let myRequest = req.body.imageEncoded;
