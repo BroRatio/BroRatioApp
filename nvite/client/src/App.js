@@ -10,7 +10,7 @@ import Landing from "./pages/Landing/Landing";
 import Uploader from "./pages/Uploader/dropzone";
 import Start from "./pages/Start/Start";
 import ImagePage from "./pages/ImagePage/ImagePage";
-import Axios from "../node_modules/axios";
+import axios from "../node_modules/axios";
 
 const theme = createMuiTheme({
   palette: {
@@ -19,21 +19,54 @@ const theme = createMuiTheme({
   }
 });
 
-function doRequest() {
-  var currentUser = localStorage.getItem("broLogin")
-
-  if (currentUser != null) {
-    Axios
-      .post("./api/userInfo/isValidUser", {
-        username: this.state.user,
-        password: this.state.password
-      }).then((resdata) => {
-        return console.log(resdata.d)
-      })
+function doAuthRequest() {
+  if (localStorage.getItem("broLogin") != null) {
+    if (JSON.parse(localStorage.getItem("broLogin")).loginStatus == true) {
+      console.log("inside the function")
+      return axios.post("./api/userInfo/loginValid", {
+        username: JSON.parse(localStorage.getItem("broLogin")).user,
+        uni: JSON.parse(localStorage.getItem("broLogin")).uni
+      }).then(
+        localresponse => {
+          var currentToken = JSON.parse(localStorage.getItem("broLogin"));
+          if (localresponse.data.integrity) {
+            currentToken.loginStatus = true;
+            currentToken.uni = localresponse.data.newHash;
+            console.log("newKey", localresponse.data.newHash)
+          }
+          else {
+            currentToken.loginStatus = false;
+            currentToken.uni = "";
+          }
+          return localStorage.setItem("broLogin", JSON.stringify(currentToken));
+        })
+    }
+    else {
+      console.log("Not Logged In");
+      return Promise.reject('Not Logged In Buddy');
+    }
+  }
+  else {
+    return Promise.reject('No Login Onject in your sesh yet');
   }
 }
 
+
 const App = () => {
+
+  window.setInterval(function () {
+    window.setTimeout(function () {
+      let rval = Math.floor(Math.random() * 5) + 1;
+      if (document.getElementsByTagName("video").length > 0) {
+        document.getElementsByTagName("video")[0].style.backgroundImage = "url('./api/images/bak" + rval + ".gif')";
+      }
+    }, 100);
+    let rval = Math.floor(Math.random() * 5) + 1;
+    if (document.getElementsByTagName("video").length > 0) {
+      document.getElementsByTagName("video")[0].style.backgroundImage = "url('./api/images/bak" + rval + ".gif')";
+    }
+  }, 15000);
+
   return (
     <MuiThemeProvider theme={theme}>
       <Router>
@@ -43,17 +76,26 @@ const App = () => {
               exact
               path="/"
               render={props => {
-                let item;
-
                 if (localStorage.getItem("broLogin") == null) {
-                  item = false;
+                  console.log("FRESH-SESH")
+                  return <Start />;
                 } else {
-                  item = JSON.parse(localStorage.getItem("broLogin"))
-                    .loginStatus;
-                }
+                  doAuthRequest().then((nm) => {
 
-                if (item === true) return <Redirect to="/landing" />;
-                else return <Start />;
+                  }).catch((err) => {
+                    console.log(err);
+                    return <Start />;
+                  })
+                }
+                var itemm = JSON.parse(localStorage.getItem("broLogin"))
+                  .loginStatus;
+                console.log("NOT-FRESH-SESH")
+                console.log(itemm)
+                if (itemm === true)
+                  return <Redirect to="/landing" />;
+                else
+                  return <Start />;
+
               }}
             />
             <Route
@@ -61,18 +103,22 @@ const App = () => {
               path="/landing"
               render={props => {
                 let item;
-
                 if (localStorage.getItem("broLogin") == null) {
-                  item = false;
-                } else {
-                  item = JSON.parse(localStorage.getItem("broLogin"))
-                    .loginStatus;
-
-
+                  return <Redirect to="/" />
                 }
-
-                if (item === false) return <Redirect to="/" />;
-                else return <Landing />;
+                else {
+                  doAuthRequest().then((nm) => {
+                  }).catch((err) => {
+                    console.log(err);
+                    return <Redirect to="/" />
+                  })
+                  var itemm = JSON.parse(localStorage.getItem("broLogin"))
+                    .loginStatus;
+                  if (itemm === true)
+                    return <Landing />;
+                  else
+                    return <Redirect to="/" />
+                }
               }}
             />
             <Route
@@ -81,14 +127,20 @@ const App = () => {
               render={props => {
                 let item;
                 if (localStorage.getItem("broLogin") == null) {
-                  item = false;
+                  return <Redirect to="/" />
                 } else {
-                  item = JSON.parse(localStorage.getItem("broLogin"))
-                    .loginStatus;
-                }
+                  doAuthRequest().then((nm) => {
+                    item = JSON.parse(localStorage.getItem("broLogin"))
+                      .loginStatus;
 
-                if (item === false) return <Redirect to="/" />;
+                  }).catch((err) => {
+                    console.log(err);
+                  })
+                }
+                if (item === false)
+                  return <Redirect to="/" />;
                 else return <ImagePage />;
+
               }}
             />
             <Route
@@ -96,15 +148,22 @@ const App = () => {
               path="/signup"
               render={props => {
                 let item;
-
                 if (localStorage.getItem("broLogin") == null) {
                   item = false;
                 } else {
-                  item = JSON.parse(localStorage.getItem("broLogin"))
-                    .loginStatus;
+                  doAuthRequest().then((nm) => {
+                    item = JSON.parse(localStorage.getItem("broLogin"))
+                      .loginStatus;
+                  }
+                  ).catch((err) => {
+                    console.log(err);
+                  })
                 }
-                if (item === true) return <Redirect to="/landing" />;
-                else return <Uploader />;
+                if (item === true)
+                  return <Redirect to="/landing" />;
+                else
+                  return <Uploader />;
+
               }}
             />
           </Switch>

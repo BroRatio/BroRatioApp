@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import "./Camera.css";
 import { image } from "../../../node_modules/superagent/lib/node/parsers";
+//import { url } from "inspector";
 
 // 
 class MoodRow extends React.Component {
@@ -41,7 +42,6 @@ class WebcamCapture extends React.Component {
   setRef = webcam => {
     this.webcam = webcam;
   };
-
   moodTranslater = moodText => {
     var returnemoji = "😈"
     switch (moodText) {
@@ -58,19 +58,19 @@ class WebcamCapture extends React.Component {
         break;
 
       case "CONFUSED":
-        returnemoji = "🤔 "+ moodText
+        returnemoji = "🤔 " + moodText
         break;
 
       case "DISGUSTED":
-        returnemoji = "😩 "+ moodText
+        returnemoji = "😩 " + moodText
         break;
 
       case "SURPRISED":
-        returnemoji = "😜 "+ moodText
+        returnemoji = "😜 " + moodText
         break;
 
       case "CALM":
-        returnemoji = "😏 "+ moodText
+        returnemoji = "😏 " + moodText
         break;
 
       case "UNKNOWN":
@@ -80,11 +80,7 @@ class WebcamCapture extends React.Component {
     }
     return returnemoji;
   }
-
-
   maleCountGraph = () => {
-    // var MCount = this.state.maleCount;
-    // var objects =  this.state.maleObject;
     var maleEmoji1 = " 👨‍ ";
     var maleEmoCounter = "";
     var manVar = this.state.male == 1 ? "Man" : "Men";
@@ -99,7 +95,7 @@ class WebcamCapture extends React.Component {
       element.Emotions.forEach(element1 => {
         rows.push(<MoodRow mood={this.moodTranslater(element1.Type)} percentage={Math.floor(element1.Confidence) + "%"} />)
       })
-    rowsMain.push(<div><p>{manVar}[{maleCount}] = Age ({element.AgeRange.Low}-{element.AgeRange.High})</p> {rows}</div>)
+      rowsMain.push(<div><p>{manVar}[{maleCount}] = Age ({element.AgeRange.Low}-{element.AgeRange.High})</p> {rows}</div>)
       maleCount++;
     })
     //console.log("Male DEBUG",this.state.maleObject)
@@ -116,9 +112,6 @@ class WebcamCapture extends React.Component {
       </div>
     )
   };
-
-
-
   femaleCountGraph = () => {
 
     var femaleEmoji1 = " 👩 ";
@@ -157,7 +150,6 @@ class WebcamCapture extends React.Component {
       </div>
     )
   };
-
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
     this.setState({
@@ -179,9 +171,9 @@ class WebcamCapture extends React.Component {
       });
     }, 9999);
     // console.log(imageSrc);
-     var curUser = JSON.parse(localStorage.getItem("broLogin")).user;
+    var curUser = JSON.parse(localStorage.getItem("broLogin")).user;
     axios
-      .post("./api/userInfo/analyze", { imageEncoded: imageSrc , username:curUser})
+      .post("./api/userInfo/analyze", { imageEncoded: imageSrc, username: curUser })
       .then(response => {
         console.log(response.data)
         this.setState({
@@ -250,12 +242,51 @@ class WebcamCapture extends React.Component {
                 fageHigh: femalesAgeHigh,
                 mmood: malesMood,
                 fmood: femalesMood,
-                url: "/images/imageMainuser-"+curUser+".png?" + Date.toString()
+                url: "api/images/imageMainuser-" + curUser + ".png?" + Date.toString()
               });
-              var c = document.getElementById("canvas");
-              var ctx = c.getContext("2d");
-              ctx.rect(20, 20, 150, 100);
-              ctx.stroke();
+
+              var canvas = document.getElementById('myCanvas');
+              var context = canvas.getContext('2d');
+
+              var imageObj = new Image();
+              imageObj.onload = function () {
+                context.canvas.width = imageObj.width;
+                context.canvas.height = imageObj.height;
+                context.drawImage(imageObj, 0, 0, imageObj.width, imageObj.height
+                );
+                context.beginPath();
+                if (response.data.malesObject.length > 0) {
+                  let countMen = 0;
+                  response.data.malesObject.forEach(element => {
+                    context.rect((element.BoundingBox.Left) * (imageObj.width), element.BoundingBox.Top * (imageObj.height), (element.BoundingBox.Width) * (imageObj.width), (element.BoundingBox.Height) * (imageObj.height));
+                    context.font = "40px Courier";
+                    context.strokeStyle = 'red';
+                    context.fillStyle = 'red';
+                    countMen = countMen + 1;
+                    context.fillText("Male " + countMen, (element.BoundingBox.Left) * (imageObj.width), element.BoundingBox.Top * (imageObj.height));
+                    context.lineWidth = 7;
+                    context.stroke();
+                  })
+                }
+
+                if (response.data.femalesObject.length > 0) {
+                  let countFem = 0;
+                  response.data.femalesObject.forEach(element => {
+                    context.rect((element.BoundingBox.Left) * (imageObj.width), element.BoundingBox.Top * (imageObj.height), (element.BoundingBox.Width) * (imageObj.width), (element.BoundingBox.Height) * (imageObj.height));
+                    context.lineWidth = 7;
+                    context.strokeStyle = 'red';
+                    context.fillStyle = 'red';
+                    context.font = "40px Courier";
+                    countFem = countFem + 1;
+                    context.fillText("Female " + countFem, (element.BoundingBox.Left) * (imageObj.width), element.BoundingBox.Top * (imageObj.height));
+                    context.stroke();
+                  })
+                }
+              };
+
+
+              imageObj.src = "http://localhost:3000/api/images/imageMainuser-bigboss.png";
+
             } catch (err) {
               console.log(err);
             }
@@ -267,14 +298,14 @@ class WebcamCapture extends React.Component {
   };
   componentDidMount() {
     this.setState({
-      url: "./images/noimage.jpg"
+      url: "./api/images/noimage.jpg"
     });
   }
   render() {
     const videoConstraints = {
       width: 1280,
       height: 720,
-      facingMode: "user"
+      facingMode: "facing"
     };
 
 
@@ -303,7 +334,7 @@ class WebcamCapture extends React.Component {
         </Button>
         <div className="container">
           <p className="message">{this.state.message}</p>
-          <div
+          {/* <div
             style={{ height: "70%", width: "70%", display: "inline-block" }}
           >
             <img
@@ -316,9 +347,26 @@ class WebcamCapture extends React.Component {
               src={this.state.url + "?" + new Date().getTime()}
               alt="No Results!"
             />
-          </div>
 
-          <div className="score" style={{ border: "1px solid red", backgroundImage:'url("/images/WoodBack.jpg")',opacity:".92"}}>
+
+          </div> */}
+          <div
+            style={{
+              overflow: "scroll",
+              height: "70%", width: "70%", display: "inline-block" 
+            }}
+          >
+            <canvas className=""
+
+              id="myCanvas"
+              style={{
+                borderRadius: "30px"
+              }}
+            />
+          </div>
+    
+
+          <div className="score" style={{ border: "1px solid red", backgroundImage: 'url("api/images/WoodBack.jpg")', opacity: ".92" }}>
             {
               (this.state.male > 0) ? (
                 <span >

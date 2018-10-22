@@ -57,7 +57,13 @@ function awsCompareFaces(imageIn, imageServer) {
         })
 }
 
-var arrayOfValidKeys = [];
+var dictOfValidKeys = {};
+
+var getUniHash = () => {
+    var today = new Date();
+    var Uniqustr = Buffer.from(today.toGMTString().split(" ").reverse().join(" ")).toString('base64')
+    return Uniqustr
+}
 
 
 module.exports = {
@@ -85,11 +91,8 @@ module.exports = {
 
                 awsCompareFaces(imgComp1, imgComp2)
                     .then(
-                        (data) => {
-
-                            var today = new Date();
-                            var Uniqustr = today.toGMTString();
-
+                        (data) => {            
+                            var Uniqustr = getUniHash();
                             console.log("Response Login", data);
                             if (data.Confidence > 70.0 && data.Similarity > 80.0) {
                                 var ResponseLogin = {
@@ -97,8 +100,8 @@ module.exports = {
                                     loginStatus: true,
                                     uni: Uniqustr
                                 }
-
-                                arrayOfValidKeys.push(Uniqustr);
+                                dictOfValidKeys[ResponseLogin.user] = ResponseLogin.uni;
+                                console.log(dictOfValidKeys)
                                 res.json(ResponseLogin)
                             }
                             else {
@@ -131,6 +134,7 @@ module.exports = {
         })
     }
     ,
+    //TODO : Update same as ^_____
     postUserPassRequest: function (req, res) {
         db.userRecord.findOne({ username: req.body.username, password: req.body.password }).then((data) => {
             console.log(data);
@@ -158,18 +162,25 @@ module.exports = {
             }
             res.json(ResponseLogin)
         })
-    },
-    isTokenValid: function (req, res){
-        
-        var validToken = false;
-        btoa
-        var parseRes = req.body.uni.split('')
-        if(arrayOfValidKeys.find( i=> i == req.body.uni) == "validToken"){
-            validToken = true;
-        }  
-        else{
-            validToken = false;
+    },   
+    isTokenValid: function (req, res){     
+        console.log("I recieved a request here †oken") 
+        var validToken = { integrity : false, newHash :"" }
+        console.log("I recieved a request here for ")
+        console.log(req.body.username, req.body.uni)
+        console.log("Dictionary is -->",JSON.stringify(dictOfValidKeys),dictOfValidKeys[req.body.username] )
+        console.log("Validity --->",dictOfValidKeys[req.body.username] === req.body.uni)
+        if(dictOfValidKeys[req.body.username] == req.body.uni)
+        {
+           validToken.integrity = true;
+           validToken.newHash = getUniHash()
+           dictOfValidKeys[req.body.username] =  validToken.newHash;
         }
-        return validToken;
+       else
+       {
+            validToken.integrity = false;
+            dictOfValidKeys[req.body.username] = ""
+       }
+      return    res.json(validToken)
     }
 };

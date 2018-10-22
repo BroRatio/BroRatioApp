@@ -120,6 +120,7 @@ function getPictureInfo(imageName) {
 module.exports = {
     getPictureInfoRequest: function (req, res) {
         let myRequest = req.body.imageEncoded;
+        if(myRequest!=null){
         const imgFix1 = myRequest.replace(/data:image\/png;base64,/gi, "")
         let img1 = new Buffer(imgFix1, 'base64');
         let username = "user-"+req.body.username;
@@ -134,6 +135,9 @@ module.exports = {
             }
         )
         })
-
+        }
+        else{
+            res.json('{}')
+        }
     }
 };

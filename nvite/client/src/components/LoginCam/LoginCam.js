@@ -54,15 +54,39 @@ class StartCam extends React.Component {
         // this.setState({ results: response });
         // console.log(this.state.results);
         console.log(response.data);
-        localStorage.setItem("broLogin", JSON.stringify(response.data));
         if (response.data.loginStatus === false) {
           this.setState({
-            message: "Login fail. Try logging in with your username."
+            message: "Login fail. Try logging in with your username. "
           });
         } else {
-          window.location.reload();
-        }
-      });
+          localStorage.setItem("broLogin", JSON.stringify(response.data));
+          if(JSON.parse(localStorage.getItem("broLogin")).loginStatus == true)
+            {
+              console.log("inside the function")
+              axios.post("./api/userInfo/loginValid", {
+                username: JSON.parse(localStorage.getItem("broLogin")).user,
+                uni : JSON.parse(localStorage.getItem("broLogin")).uni
+              }).then(
+                localresponse =>{
+                  var currentToken = JSON.parse(localStorage.getItem("broLogin"));
+                  if(localresponse.data.integrity)
+                  {
+                    currentToken.loginStatus = true;
+                    currentToken.uni = localresponse.data.newHash;
+                    console.log("newKey",localresponse.data.newHash)
+                  }
+                  else
+                  {
+                    currentToken.loginStatus = false;
+                    currentToken.uni = "";                  
+                  }
+                  localStorage.setItem("broLogin", JSON.stringify(currentToken));
+                  window.location.reload();
+                })
+            }
+          }
+      })     
+    
   };
 
   render() {

@@ -1,9 +1,11 @@
 const router = require("express").Router();
-
-const userInfo= require("./userInfo");
+const userPath= require("./userInfo");
 const imagePath = require("./imagePath");
+const loginPath = require("./loginLogic");
 
-router.use("/userInfo", userInfo);
-router.use("/images", imagePath); //make the images show up
+//Most all of the routes
+router.use("/userInfo", userPath); //User auth
+
+// router.use("/login", loginPath); //Login Path
 
 module.exports = router;

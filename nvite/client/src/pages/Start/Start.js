@@ -7,7 +7,7 @@ export default class Start extends Component {
   render() {
     return (
       <div>
-        <h1 className="nvite">Welcome to Nvite...</h1>
+        <h1 className="nvite">Welcome to Node Face...</h1>
         <LoginCam />
       </div>
     );
