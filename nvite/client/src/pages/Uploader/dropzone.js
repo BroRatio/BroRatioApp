@@ -61,7 +61,7 @@ export default class Basic extends React.Component {
       req
         .then(data => {
           console.log(data);
-          var uploadOGDone = "😬DONEEEEEEEEEE with the Upload/SignUP 😬 ";
+          var uploadOGDone = "😃 😃 DONEEEEEEEEEE with the Upload/SignUP😃 😃 ";
           this.setState({ warningState: uploadOGDone });
         })
         .catch(data => {
@@ -87,7 +87,7 @@ export default class Basic extends React.Component {
           <Dropzone accept="image/jpeg, image/png" onDrop={this.onDrop.bind(this)} disablePreview={false} multiple={true}
           style={{position: "relative", textAlign: "center" , width: "70%", height: "70%", borderWidth: "10px",margin:"0 auto",borderColor: "white", borderStyle: "dashed", borderRadius: "5px"}}
           >
-            <p style={{ color: "white" , backgroundColor:"#11ece2c4" }}>         
+            <p style={{ color: "blue" , backgroundColor:"#11ece2c4" }}>         
             <img src="https://png.icons8.com/metro/1600/dropbox.png" width="30%" height="200px" textAlign="center"/>
             <p style={{ color: "white" , backgroundColor:"black" }} > 
                       🤘Try dropping some png or jpeg here 🤘, or click to select files to upload.👉🏻 👉🏻  
@@ -98,13 +98,13 @@ export default class Basic extends React.Component {
 
           </Dropzone>
         </div>
-        <section style={{ color: "white", textAlign: "center" }}>
-          <aside style={{ color: "white" }}>
-            <h2>{this.state.warningState}</h2>
+        <section style={{ color: "black", textAlign: "center" }}>
+          <aside style={{ color: "black" }}>
+            <h2 style={{ color: "black" }}>{this.state.warningState}</h2>
             <h2 className="mood">
               We recommend up to 😃 😃 😃 😃 😃 (5 face)pictures if available
             </h2>
-            <ul style={{ listStyle: "none" }}>
+            <ul style={{ listStyle: "none" ,  color: "black" }}>
               {this.state.files.map(f => (
                 <li key={f.name}>
                   {f.name} - {f.size} bytes
