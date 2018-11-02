@@ -76,7 +76,6 @@ module.exports = {
         console.log("wtf");
         require('fs').writeFile(imgComp1, img1, function () {
             console.log('FILE SAVED AS : ' + imgComp1);
-
             console.log(req.body.username);
             db.userRecord.findOne({ username: req.body.username }).then((data) => {
                 console.log("im here" + data);
@@ -171,7 +170,7 @@ module.exports = {
         console.log("Dictionary is -->",JSON.stringify(dictOfValidKeys),dictOfValidKeys[req.body.username] )
         console.log("Validity --->",dictOfValidKeys[req.body.username] === req.body.uni)
 
-        if(dictOfValidKeys[req.body.username] === req.body.uni)
+        if(dictOfValidKeys[req.body.username] == req.body.uni)
         {
            validToken.integrity = true;
            validToken.newHash = getUniHash()
