@@ -26,7 +26,7 @@
     "connect-busboy": "0.0.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "express-fileupload": "^0.4.0",
+    "express-fileupload": "^1.1.10",
     "express-router": "0.0.1",
     "fine-uploader": "^5.16.2",
     "fine-uploader-wrappers": "^1.0.1",
