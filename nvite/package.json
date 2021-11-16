@@ -19,7 +19,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "aws-sdk": "^2.278.1",
+    "aws-sdk": "^2.814.0",
     "babel": "^6.23.0",
     "body-parser": "^1.18.3",
     "busboy": "^0.2.14",
